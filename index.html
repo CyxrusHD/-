@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,viewport-fit=cover">
+<meta name="theme-color" content="#050506">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>MAG-СЕРВИС — Ремонт техники в Екатеринбурге</title>
+<meta name="description" content="Ремонт смартфонов, ноутбуков, ТВ, кофемашин. Менделеева, 11. Бесплатная диагностика, гарантия до 12 мес.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --p:#16A34A;--ph:#22C55E;--ok:#22C55E;--hot:#EF4444;--acc:#8B5CF6;--cy:#06B6D4;
+  --r:14px;--r2:20px;--rpill:9999px;
+  --fb:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --fd:'Unbounded','Manrope',sans-serif;
+  --fm:'JetBrains Mono',monospace;
+  --tf:200ms cubic-bezier(.22,1,.36,1);
+  --tm:300ms cubic-bezier(.22,1,.36,1);
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-t:env(safe-area-inset-top,0px);
+}
+[data-theme="dark"]{
+  --bg:#050506;--s:#0D0D10;--s2:#131317;--s3:#1B1B20;
+  --t:#fff;--m:#A1A1AA;--m2:#71717A;
+  --b:rgba(255,255,255,.08);--bs:rgba(255,255,255,.16);
+  --hb:rgba(5,5,6,.85);--ov:rgba(0,0,0,.85);
+  --glass:rgba(255,255,255,.04);
+  --shadow:0 20px 40px -12px rgba(0,0,0,.9);
+}
+[data-theme="light"]{
+  --bg:#FAFAFB;--s:#fff;--s2:#F4F4F6;--s3:#EAEAEF;
+  --t:#0A0A0A;--m:#52525B;--m2:#71717A;
+  --b:rgba(10,10,10,.08);--bs:rgba(10,10,10,.16);
+  --hb:rgba(255,255,255,.9);--ov:rgba(15,15,20,.6);
+  --glass:rgba(255,255,255,.7);
+  --shadow:0 20px 40px -12px rgba(0,0,0,.2);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--fb);font-size:15px;line-height:1.6;color:var(--t);background:var(--bg);
+  transition:background var(--tm),color var(--tm);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  padding-bottom:calc(76px + var(--safe-b));
+  overscroll-behavior-y:none;
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;font-size:inherit}
+img{max-width:100%;display:block}
+::selection{background:var(--p);color:#fff}
+::-webkit-scrollbar{display:none}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px}
+.h1{font-family:var(--fd);font-size:30px;font-weight:700;line-height:1.1;letter-spacing:-.02em}
+.h2{font-family:var(--fd);font-size:24px;font-weight:700;line-height:1.15;letter-spacing:-.02em}
+.h3{font-size:17px;font-weight:700;line-height:1.3}
+.tx{font-size:14.5px;line-height:1.65;color:var(--m)}
+.cap{font-size:12px;color:var(--m2);font-weight:500}
+.ac{background:linear-gradient(135deg,var(--p),#34D399);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+/* ============ BUTTONS ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;border-radius:12px;font-size:15px;font-weight:700;transition:transform var(--tf),background var(--tf);white-space:nowrap;border:1px solid transparent;position:relative;overflow:hidden;min-height:48px;letter-spacing:-.01em}
+.btn:active{transform:scale(.97)}
+.btn svg{width:18px;height:18px;flex-shrink:0}
+.bp{background:linear-gradient(135deg,var(--p),#059669);color:#fff;box-shadow:0 8px 20px -6px rgba(22,163,74,.6)}
+.bs{background:var(--glass);backdrop-filter:blur(12px);border-color:var(--bs);color:var(--t)}
+.bg2{background:var(--s);color:var(--t);border-color:var(--b)}
+.btn-sm{padding:10px 14px;font-size:13.5px;min-height:42px}
+.btn-em{background:linear-gradient(135deg,#EF4444,#DC2626);color:#fff;animation:sosPulse 2.5s infinite}
+@keyframes sosPulse{0%,100%{box-shadow:0 8px 20px -6px rgba(239,68,68,.6)}50%{box-shadow:0 8px 30px -4px rgba(239,68,68,.9),0 0 0 6px rgba(239,68,68,.15)}}
+
+/* ============ PROGRESS ============ */
+.progress-bar{position:fixed;top:0;left:0;right:0;height:2px;z-index:9999;background:transparent;pointer-events:none}
+.progress-bar>div{height:100%;width:0;background:linear-gradient(90deg,var(--p),var(--cy));box-shadow:0 0 10px var(--p);transition:width 80ms linear}
+
+/* ============ HEADER ============ */
+.hd{position:sticky;top:0;z-index:500;background:var(--hb);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--b);padding-top:var(--safe-t)}
+.hdi{display:flex;align-items:center;justify-content:space-between;height:58px;gap:10px}
+.lg{display:flex;align-items:center;gap:9px;font-family:var(--fd);font-weight:700;font-size:15px}
+.lgm{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--p),#059669);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:12px;box-shadow:0 0 16px rgba(22,163,74,.5)}
+.lgt{display:flex;flex-direction:column;line-height:1}
+.lgt small{font-size:8.5px;color:var(--m2);font-weight:500;margin-top:3px;letter-spacing:.02em}
+.hdr{display:flex;align-items:center;gap:6px}
+.tt,.burger{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--glass);border:1px solid var(--b);color:var(--t);transition:all var(--tf)}
+.tt:active,.burger:active{transform:scale(.92)}
+.tt svg,.burger svg{width:18px;height:18px}
+[data-theme="dark"] .is{display:block}[data-theme="dark"] .im{display:none}
+[data-theme="light"] .is{display:none}[data-theme="light"] .im{display:block}
+
+/* ============ HERO ============ */
+.hero{position:relative;padding:36px 0 28px;overflow:hidden;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(22,163,74,.22),transparent 70%)}
+.hero::before{content:'';position:absolute;top:-15%;left:-20%;width:340px;height:340px;background:rgba(22,163,74,.25);filter:blur(70px);border-radius:50%;animation:float1 12s ease-in-out infinite;pointer-events:none}
+@keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,20px) scale(1.15)}}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:var(--rpill);background:var(--glass);border:1px solid var(--bs);backdrop-filter:blur(10px);font-size:11.5px;font-weight:600;margin-bottom:16px}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--p);box-shadow:0 0 0 3px rgba(22,163,74,.2);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 3px rgba(22,163,74,.2)}50%{opacity:.7;box-shadow:0 0 0 8px rgba(22,163,74,0)}}
+.hero h1{margin-bottom:14px}
+.hero-sub{font-size:15px;line-height:1.6;color:var(--m);margin-bottom:20px}
+.hero-cta{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+.hero-cta .btn{width:100%}
+.hero-cta-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--m2)}
+.hero-meta span{display:flex;align-items:center;gap:5px}
+.hero-meta b{color:var(--t);font-weight:700}
+.dl{width:6px;height:6px;border-radius:50%;background:var(--ok);animation:pl 2s infinite}
+@keyframes pl{0%,100%{opacity:1}50%{opacity:.5}}
+
+/* ============ 3D PHONE ============ */
+.hero-visual{position:relative;height:280px;margin:24px 0 6px;perspective:900px}
+.phone3d{position:absolute;top:50%;left:50%;width:150px;height:300px;transform:translate(-50%,-50%) rotateY(-14deg) rotateX(6deg);transform-style:preserve-3d;animation:heroFloat 5s ease-in-out infinite}
+@keyframes heroFloat{0%,100%{transform:translate(-50%,-50%) rotateY(-14deg) rotateX(6deg) translateY(0)}50%{transform:translate(-50%,-50%) rotateY(-8deg) rotateX(3deg) translateY(-8px)}}
+.phone-body{position:absolute;inset:0;border-radius:26px;background:linear-gradient(160deg,#1a1a1c,#08080a);border:2px solid rgba(255,255,255,.1);box-shadow:0 30px 60px -12px rgba(22,163,74,.5),0 20px 40px -12px rgba(0,0,0,.9);overflow:hidden}
+.phone-body::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(22,163,74,.4),transparent 55%),radial-gradient(circle at 80% 90%,rgba(139,92,246,.3),transparent 50%);opacity:.85}
+.phone-screen{position:absolute;inset:8px;border-radius:20px;background:#0a0a0c;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+.phone-notch{position:absolute;top:5px;left:50%;transform:translateX(-50%);width:60px;height:14px;background:#000;border-radius:10px;z-index:3}
+.ps-content{position:absolute;inset:0;padding:30px 12px 12px;display:flex;flex-direction:column;gap:8px;color:#fff;font-size:10px}
+.ps-head{display:flex;justify-content:space-between;font-size:9px;opacity:.7;font-weight:600}
+.ps-title{font-family:var(--fd);font-size:11px;font-weight:700;margin-bottom:2px}
+.ps-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:9px;padding:7px 9px;font-size:9px;font-weight:500;line-height:1.4}
+.ps-card.hi{background:linear-gradient(135deg,rgba(22,163,74,.28),rgba(22,163,74,.08));border-color:rgba(22,163,74,.4)}
+.ps-card b{display:block;font-size:9.5px;font-weight:700;margin-bottom:3px}
+.ps-bar{height:4px;background:rgba(255,255,255,.1);border-radius:100px;overflow:hidden;margin-top:4px}
+.ps-bar i{display:block;height:100%;width:15%;background:linear-gradient(90deg,var(--p),#34D399);border-radius:100px;animation:psBar 4s ease-in-out infinite}
+@keyframes psBar{0%{width:15%}50%{width:82%}100%{width:15%}}
+.ps-price{background:linear-gradient(135deg,#16A34A,#059669);border-radius:9px;padding:8px;text-align:center;font-family:var(--fd);font-weight:700;font-size:12px}
+.ps-price s{color:rgba(255,255,255,.5);font-weight:400;font-size:9px;margin-left:3px}
+.ps-price em{background:rgba(255,255,255,.25);border-radius:100px;padding:1px 5px;font-style:normal;font-size:8px;margin-left:3px}
+.ps-btn{background:#fff;color:#0a0a0a;border-radius:8px;padding:7px;text-align:center;font-weight:700;font-size:10px;margin-top:auto}
+.fchip{position:absolute;width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:22px;background:rgba(255,255,255,.07);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.22);box-shadow:0 12px 30px rgba(0,0,0,.5);transform:translateZ(80px);animation:chipF 3s ease-in-out infinite;z-index:2}
+.fc1{top:8%;left:6%;animation-delay:0s}
+.fc2{top:26%;right:2%;animation-delay:.5s}
+.fc3{bottom:28%;left:0;animation-delay:1s}
+.fc4{bottom:10%;right:10%;animation-delay:1.5s}
+@keyframes chipF{0%,100%{transform:translateZ(80px) translateY(0) rotate(0)}50%{transform:translateZ(80px) translateY(-8px) rotate(5deg)}}
+.hero-leds{position:absolute;top:0;right:0;display:flex;gap:5px;z-index:3}
+.hero-led{width:6px;height:6px;border-radius:50%;box-shadow:0 0 8px currentColor;animation:ledB 1.4s infinite}
+.hero-led.red{background:#EF4444;color:#EF4444}
+.hero-led.yellow{background:#F59E0B;color:#F59E0B;animation-delay:.4s}
+.hero-led.green{background:#22C55E;color:#22C55E;animation-delay:.8s}
+@keyframes ledB{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ============ MARQUEE ============ */
+.marq{background:linear-gradient(90deg,var(--p),#22C55E,#16A34A);background-size:200% 100%;animation:gm 6s linear infinite;color:#fff;font-weight:800;padding:10px 0;white-space:nowrap;overflow:hidden;font-size:12px}
+@keyframes gm{to{background-position:200% 0}}
+.marq-in{display:inline-block;animation:mar 24s linear infinite}
+@keyframes mar{to{transform:translateX(-50%)}}
+
+/* ============ STATS ============ */
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}
+.stat-card{background:var(--glass);border:1px solid var(--b);border-radius:var(--r);padding:16px;text-align:center;backdrop-filter:blur(12px)}
+.stat-card b{font-family:var(--fd);font-size:26px;font-weight:700;display:block;background:linear-gradient(135deg,var(--p),var(--cy));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;line-height:1}
+.stat-card span{font-size:11.5px;color:var(--m);line-height:1.35}
+
+/* ============ TIMER ============ */
+.timerbar{background:linear-gradient(135deg,rgba(22,163,74,.18),rgba(139,92,246,.1));border:1px solid rgba(22,163,74,.35);border-radius:var(--r);padding:14px;margin:14px 0;display:flex;flex-direction:column;gap:10px}
+.timerbar b{font-size:13.5px;font-weight:700;display:block}
+.timerbar .cap{margin-top:3px}
+.timerbox{display:flex;gap:6px;justify-content:center}
+.timerbox>div{background:linear-gradient(160deg,#0a0a0c,#18181c);color:#fff;border:1px solid rgba(255,255,255,.1);border-radius:10px;min-width:56px;text-align:center;padding:7px 4px;font-family:var(--fd);font-weight:700;font-size:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.timerbox small{display:block;font-size:9px;color:var(--m);font-weight:500;font-family:var(--fb);margin-top:2px}
+
+/* ============ SECTIONS ============ */
+.sec{padding:36px 0}
+.sh{margin-bottom:20px}
+.sh .h2{margin-bottom:6px}
+.sh .tx{max-width:100%}
+
+/* ============ CATEGORY CARDS ============ */
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cat3d{position:relative;aspect-ratio:1/.95;border-radius:var(--r2);background:var(--glass);border:1px solid var(--b);backdrop-filter:blur(12px);overflow:hidden;padding:16px;display:flex;flex-direction:column;justify-content:space-between;transition:transform var(--tf);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cat3d:active{transform:scale(.97)}
+.cat3d::before{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:radial-gradient(circle,var(--g1,rgba(22,163,74,.25)),transparent 65%);pointer-events:none}
+.cat3d-ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:24px;background:linear-gradient(135deg,var(--g1,rgba(22,163,74,.4)),var(--g2,rgba(34,197,94,.1)));border:1px solid rgba(255,255,255,.15);box-shadow:inset 0 1px 0 rgba(255,255,255,.25);position:relative;z-index:2;animation:iconF 4s ease-in-out infinite}
+@keyframes iconF{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.cat3d-info{position:relative;z-index:2}
+.cat3d h3{font-size:14.5px;font-weight:700;line-height:1.2;margin-bottom:4px}
+.cat3d .cat3d-cap{font-size:11px;color:var(--m2);font-weight:500;display:block;margin-bottom:2px}
+.cat3d .cat3d-price{font-family:var(--fd);font-size:14px;font-weight:700;color:var(--p);display:block;margin-top:4px}
+
+/* ============ SERVICE CARDS ============ */
+.svc-card{background:var(--glass);border:1px solid var(--b);border-radius:var(--r2);padding:16px;margin-bottom:10px;backdrop-filter:blur(12px);position:relative;overflow:hidden}
+.svc-card.badge-hit::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--p),transparent)}
+.svc-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
+.svc-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,rgba(22,163,74,.25),rgba(22,163,74,.05));display:grid;place-items:center;font-size:22px;flex-shrink:0;border:1px solid rgba(22,163,74,.25)}
+.svc-titles{flex:1;min-width:0}
+.svc-titles h3{font-size:15px;font-weight:700;line-height:1.3;margin-bottom:3px}
+.svc-titles .svc-desc{font-size:12.5px;color:var(--m);line-height:1.5}
+.svc-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;padding-top:10px;border-top:1px solid var(--b)}
+.svc-price{font-family:var(--fd);font-size:17px;font-weight:700;color:var(--t)}
+.svc-price small{font-size:11px;color:var(--m2);font-weight:500;font-family:var(--fb);margin-left:2px}
+.bdg{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:var(--rpill);background:rgba(34,197,94,.16);color:#4ADE80}
+.bdg.hot{background:rgba(239,68,68,.16);color:#FCA5A5}
+.bdg.fast{background:rgba(6,182,212,.16);color:#22D3EE}
+
+/* ============ LAB / EXPLODED ============ */
+.lab{padding:36px 0;background:linear-gradient(180deg,#020503,#05100a 50%,#020503);position:relative;overflow:hidden;margin:20px 0;border-top:1px solid var(--b);border-bottom:1px solid var(--b)}
+[data-theme="light"] .lab{background:linear-gradient(180deg,#F5F8F5,#EFF4EF 50%,#F5F8F5)}
+.lab::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(34,197,94,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(34,197,94,.06) 1px,transparent 1px);background-size:30px 30px;pointer-events:none}
+.lab-inner{position:relative;z-index:2}
+.hud-label-top{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:10px;background:rgba(0,0,0,.4);border:1px solid rgba(34,197,94,.35);font-family:var(--fm);font-size:9.5px;color:#4ADE80;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:14px}
+[data-theme="light"] .hud-label-top{background:rgba(255,255,255,.8);color:#16A34A}
+.hud-label-top .sep{opacity:.3}
+.hud-label-top b{color:#fff}
+[data-theme="light"] .hud-label-top b{color:#0A0A0A}
+.lab h2{font-family:var(--fd);font-size:22px;font-weight:700;line-height:1.2;margin-bottom:12px;letter-spacing:-.02em}
+.lab h2 .glitch{color:#4ADE80;position:relative;display:inline-block}
+.lab .tx{margin-bottom:16px;font-size:14px}
+.exploded-wrap{display:flex;justify-content:center;align-items:center;margin:18px 0;perspective:1200px;min-height:300px}
+.exploded{position:relative;width:180px;height:320px;transform-style:preserve-3d;margin:0 auto}
+.exploded-inner{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(-18deg) rotateX(6deg);animation:expF 6s ease-in-out infinite}
+@keyframes expF{0%,100%{transform:rotateY(-18deg) rotateX(6deg) translateY(0)}50%{transform:rotateY(-10deg) rotateX(3deg) translateY(-8px)}}
+.exp-layer{position:absolute;left:50%;top:50%;width:150px;height:290px;border-radius:22px;transition:transform 900ms cubic-bezier(.22,1,.36,1);transform-style:preserve-3d;backface-visibility:hidden}
+.exp-layer>div{width:100%;height:100%;border-radius:22px;position:relative;overflow:hidden}
+.exp-l1{transform:translate(-50%,-50%) translateZ(150px)}
+.exp-l2{transform:translate(-50%,-50%) translateZ(90px)}
+.exp-l3{transform:translate(-50%,-50%) translateZ(30px)}
+.exp-l4{transform:translate(-50%,-50%) translateZ(-30px)}
+.exp-l5{transform:translate(-50%,-50%) translateZ(-90px)}
+.exp-l6{transform:translate(-50%,-50%) translateZ(-150px)}
+.exploded:not(.exploded-open) .exp-layer{transform:translate(-50%,-50%) translateZ(0)!important;opacity:.95}
+.exp-screen{background:linear-gradient(150deg,rgba(255,255,255,.15),rgba(22,163,74,.35),rgba(139,92,246,.25));border:2px solid rgba(255,255,255,.35);box-shadow:0 15px 40px rgba(22,163,74,.5)}
+.exp-screen::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);background-size:200% 100%;animation:sheen 3s infinite}
+@keyframes sheen{0%{background-position:200% 0}100%{background-position:-100% 0}}
+.exp-display{background:#0a0a0c;border:2px solid rgba(22,163,74,.6);box-shadow:0 0 25px rgba(22,163,74,.5),inset 0 0 40px rgba(22,163,74,.2)}
+.exp-display::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(22,163,74,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(22,163,74,.35) 1px,transparent 1px);background-size:10px 10px;mask-image:linear-gradient(180deg,transparent,black 20%,black 80%,transparent);-webkit-mask-image:linear-gradient(180deg,transparent,black 20%,black 80%,transparent)}
+.exp-display::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--p),transparent);animation:scanB 2.5s linear infinite;box-shadow:0 0 12px var(--p)}
+@keyframes scanB{0%{top:0}100%{top:100%}}
+.exp-frame{background:linear-gradient(150deg,#2a2a30,#0e0e12);border:2px solid rgba(255,255,255,.14)}
+.exp-frame::before{content:'';position:absolute;inset:5px;border-radius:18px;border:1px dashed rgba(22,163,74,.4)}
+.exp-battery{background:linear-gradient(135deg,#0b3b1e,#021a0c);border:2px solid rgba(34,197,94,.6);box-shadow:0 0 20px rgba(34,197,94,.4)}
+.exp-battery::before{content:'';position:absolute;inset:6px;background:linear-gradient(90deg,var(--p) 0,var(--p) 65%,transparent 65%);border-radius:3px;box-shadow:0 0 8px var(--p)}
+.exp-battery::after{content:'⚡ 4 200 mAh';position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-family:var(--fm);font-size:8px;color:#4ADE80;letter-spacing:.08em;font-weight:700}
+.exp-board{background:linear-gradient(150deg,#0a3b1c,#051a0d);border:2px solid rgba(34,197,94,.5);box-shadow:0 0 20px rgba(34,197,94,.35)}
+.exp-board::before{content:'';position:absolute;inset:6px;background-image:radial-gradient(circle at 20% 20%,rgba(34,197,94,.8) 1.2px,transparent 2px),radial-gradient(circle at 70% 15%,rgba(255,193,7,.9) 1.2px,transparent 2px),radial-gradient(circle at 30% 60%,rgba(139,92,246,.8) 1.2px,transparent 2px),radial-gradient(circle at 75% 70%,rgba(34,197,94,.8) 1.2px,transparent 2px),linear-gradient(rgba(34,197,94,.25) 1px,transparent 1px),linear-gradient(90deg,rgba(34,197,94,.25) 1px,transparent 1px);background-size:auto,auto,auto,auto,10px 10px,10px 10px;border-radius:14px}
+.exp-board::after{content:'MAINBOARD v2.4';position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-family:var(--fm);font-size:7.5px;color:#4ADE80;letter-spacing:.1em;font-weight:700;background:rgba(0,0,0,.6);padding:2px 6px;border-radius:4px;border:1px solid rgba(34,197,94,.4)}
+.exp-cover{background:linear-gradient(150deg,#1a1a1e,#050507);border:2px solid rgba(255,255,255,.1)}
+.exp-cover::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 25%,rgba(22,163,74,.2),transparent 55%),radial-gradient(circle at 75% 85%,rgba(139,92,246,.18),transparent 55%)}
+.exp-controls{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:8px}
+.exp-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:100px;background:rgba(34,197,94,.14);border:1px solid rgba(34,197,94,.4);font-family:var(--fm);font-size:10px;font-weight:700;color:#4ADE80;letter-spacing:.05em;text-transform:uppercase}
+.exp-chip .dot{width:5px;height:5px;border-radius:50%;background:#22C55E;box-shadow:0 0 6px #22C55E;animation:ld 1.4s infinite}
+@keyframes ld{0%,100%{opacity:1}50%{opacity:.4;transform:scale(1.3)}}
+
+/* ============ REPAIR LOG ============ */
+.repair-log{background:linear-gradient(160deg,#021810,#010c08);border:1px solid rgba(34,197,94,.35);border-radius:14px;overflow:hidden;margin-top:16px;box-shadow:inset 0 0 30px rgba(34,197,94,.12)}
+.rl-head{display:flex;align-items:center;gap:8px;padding:9px 12px;background:rgba(0,0,0,.4);border-bottom:1px solid rgba(34,197,94,.25)}
+.rl-head .dots{display:flex;gap:4px}
+.rl-head .dots i{width:8px;height:8px;border-radius:50%;display:block}
+.rl-head .dots i:nth-child(1){background:#EF4444}
+.rl-head .dots i:nth-child(2){background:#F59E0B}
+.rl-head .dots i:nth-child(3){background:#22C55E}
+.rl-head b{font-family:var(--fm);font-size:10px;color:#4ADE80;letter-spacing:.05em;font-weight:700}
+.rl-body{font-family:var(--fm);font-size:10.5px;line-height:1.7;padding:10px 12px;max-height:180px;overflow:hidden}
+.rl-line{display:flex;gap:8px;opacity:0;animation:rlIn .3s forwards}
+@keyframes rlIn{to{opacity:1}}
+.rl-line .t{color:#22D3EE;min-width:48px;flex-shrink:0}
+.rl-line .s{color:#4ADE80;flex:1}
+.rl-line .s.err{color:#F87171}
+.rl-line .s.warn{color:#FBBF24}
+.rl-line .s.ok{color:#22C55E;font-weight:700}
+
+/* ============ 3D CUBE ============ */
+.cube-stage{height:200px;display:grid;place-items:center;perspective:800px;margin:16px 0}
+.cube3d{width:110px;height:110px;position:relative;transform-style:preserve-3d;animation:cubeSpin 14s linear infinite}
+@keyframes cubeSpin{to{transform:rotateY(360deg) rotateX(360deg)}}
+.cube-face{position:absolute;inset:0;display:grid;place-items:center;font-size:44px;background:linear-gradient(150deg,rgba(22,163,74,.3),rgba(22,163,74,.08));border:1px solid rgba(34,197,94,.5);box-shadow:inset 0 0 30px rgba(22,163,74,.35)}
+.cube-face:nth-child(1){transform:rotateY(0deg) translateZ(55px)}
+.cube-face:nth-child(2){transform:rotateY(90deg) translateZ(55px)}
+.cube-face:nth-child(3){transform:rotateY(180deg) translateZ(55px)}
+.cube-face:nth-child(4){transform:rotateY(-90deg) translateZ(55px)}
+.cube-face:nth-child(5){transform:rotateX(90deg) translateZ(55px)}
+.cube-face:nth-child(6){transform:rotateX(-90deg) translateZ(55px)}
+
+/* ============ TRACKER ============ */
+.tracker-wrap{background:var(--glass);border:1px solid var(--b);border-radius:var(--r2);padding:18px;backdrop-filter:blur(12px)}
+.tracker-form{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tracker-form input{flex:1;min-width:0;padding:13px 14px;border-radius:11px;background:var(--s);border:1px solid var(--b);color:var(--t);font-family:inherit;font-size:14px}
+.tracker-form input:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 3px rgba(22,163,74,.15)}
+.trk-step{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;background:var(--s);border:1px solid var(--b);margin-bottom:8px;transition:all var(--tm)}
+.trk-step.active{border-color:var(--p);background:rgba(22,163,74,.08)}
+.trk-step.done{opacity:.8}
+.trk-dot{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--s2);color:var(--m2);font-weight:700;font-size:12px;flex-shrink:0}
+.trk-step.done .trk-dot{background:var(--p);color:#fff}
+.trk-step.active .trk-dot{background:var(--p);color:#fff;box-shadow:0 0 0 4px rgba(22,163,74,.2);animation:pulse 2s infinite}
+.trk-info b{display:block;font-size:13.5px;font-weight:700}
+.trk-info span{font-size:11.5px;color:var(--m)}
+
+/* ============ PROCESS ============ */
+.proc-list{display:flex;flex-direction:column;gap:10px}
+.proc-card{background:var(--glass);border:1px solid var(--b);border-radius:var(--r2);padding:16px;backdrop-filter:blur(12px);display:flex;gap:14px;align-items:flex-start}
+.proc-scene{position:relative;width:60px;height:60px;border-radius:14px;background:linear-gradient(160deg,#0a1410,#050a08);border:1px solid rgba(34,197,94,.25);display:grid;place-items:center;flex-shrink:0;overflow:hidden}
+.proc-scene::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(34,197,94,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(34,197,94,.08) 1px,transparent 1px);background-size:12px 12px}
+.proc-scene .ic{font-size:28px;position:relative;z-index:2;animation:sceneF 3s ease-in-out infinite;filter:drop-shadow(0 0 10px rgba(22,163,74,.7))}
+@keyframes sceneF{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.proc-body{flex:1;min-width:0}
+.proc-num{font-family:var(--fd);font-size:11px;font-weight:700;color:var(--p);letter-spacing:.08em;display:block;margin-bottom:4px}
+.proc-body h3{font-size:15px;font-weight:700;margin-bottom:4px}
+.proc-body p{font-size:13px;color:var(--m);line-height:1.55}
+
+/* ============ BEFORE/AFTER ============ */
+.ba-wrap{position:relative;border-radius:var(--r2);overflow:hidden;border:1px solid var(--b);background:var(--s2);aspect-ratio:4/3;margin-bottom:12px;touch-action:none;user-select:none;box-shadow:var(--shadow)}
+.ba-side{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;text-align:center;font-size:13px;font-weight:700}
+.ba-before{background:linear-gradient(135deg,#2a1414,#1a0f0f)}
+.ba-after{background:linear-gradient(135deg,#0d2b1a,#0a1f14)}
+.ba-emoji{font-size:48px;filter:drop-shadow(0 8px 20px rgba(0,0,0,.6))}
+.ba-crack{font-size:11px;font-weight:800;color:#ff8a8a;background:rgba(0,0,0,.6);padding:4px 10px;border-radius:100px}
+.ba-ok{font-size:11px;font-weight:800;color:#7dff9a;background:rgba(0,0,0,.6);padding:4px 10px;border-radius:100px}
+.ba-after{clip-path:inset(0 0 0 var(--pos,50%))}
+.ba-handle{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:2px;background:#22C55E;box-shadow:0 0 14px #22C55E;z-index:3}
+.ba-knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;background:#fff;color:#0a0a0a;display:grid;place-items:center;font-weight:900;font-size:16px;box-shadow:0 6px 20px rgba(0,0,0,.6)}
+.ba-tag{position:absolute;top:10px;font-size:10px;font-weight:800;letter-spacing:.05em;padding:3px 9px;border-radius:100px;z-index:2}
+.ba-tag.l{left:10px;background:rgba(239,68,68,.9);color:#fff}
+.ba-tag.r{right:10px;background:rgba(22,163,74,.9);color:#fff}
+
+/* ============ REVIEWS ============ */
+.rev-card{background:var(--glass);border:1px solid var(--b);border-radius:var(--r2);padding:16px;backdrop-filter:blur(12px);margin-bottom:10px}
+.rev-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.rev-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--p),#059669);color:#fff;font-weight:700;display:grid;place-items:center;font-size:15px;flex-shrink:0}
+.rev-name{font-weight:700;font-size:13.5px}
+.rev-meta{font-size:11px;color:var(--m2)}
+.rev-stars{margin-left:auto;color:#FBBF24;font-size:12px;letter-spacing:1px}
+.rev-text{font-size:13.5px;line-height:1.6;color:var(--m)}
+.rev-text b{color:var(--t);font-weight:600}
+
+/* ============ FAQ ============ */
+.faq-item{border:1px solid var(--b);border-radius:14px;background:var(--glass);margin-bottom:8px;overflow:hidden;backdrop-filter:blur(12px)}
+.faq-item[open]{border-color:rgba(22,163,74,.4);background:var(--s)}
+.faq-item summary{padding:14px 16px;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;font-weight:700;color:var(--t)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-ic{width:26px;height:26px;border-radius:8px;flex-shrink:0;background:var(--s3);display:grid;place-items:center;position:relative;transition:all var(--tf)}
+.faq-item[open] .faq-ic{background:linear-gradient(135deg,var(--p),#059669);transform:rotate(45deg)}
+.faq-ic::before,.faq-ic::after{content:'';position:absolute;background:currentColor;border-radius:2px}
+.faq-ic::before{width:9px;height:2px}
+.faq-ic::after{width:2px;height:9px}
+.faq-body{padding:0 16px 16px;font-size:13.5px;line-height:1.65;color:var(--m)}
+.faq-body b{color:var(--t);font-weight:600}
+
+/* ============ CTA ============ */
+.cta-box{position:relative;padding:28px 20px;border-radius:var(--r2);background:linear-gradient(135deg,rgba(22,163,74,.14),rgba(139,92,246,.1));border:1px solid var(--bs);text-align:center;overflow:hidden;backdrop-filter:blur(12px)}
+.cta-box::before{content:'';position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(22,163,74,.25),transparent 65%);pointer-events:none}
+.cta-box>*{position:relative;z-index:2}
+.cta-box h2{margin-bottom:10px}
+.cta-box .tx{font-size:14px;margin-bottom:18px}
+.cta-btns{display:flex;flex-direction:column;gap:8px}
+.cta-btns .btn{width:100%}
+
+/* ============ CONTACT ============ */
+.contact-card{background:var(--glass);border:1px solid var(--b);border-radius:var(--r2);padding:16px;backdrop-filter:blur(12px);margin-bottom:10px;display:flex;gap:12px;align-items:center}
+.contact-ic{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,rgba(22,163,74,.22),rgba(22,163,74,.05));display:grid;place-items:center;color:var(--p);flex-shrink:0}
+.contact-ic svg{width:22px;height:22px}
+.contact-body h3{font-size:14.5px;font-weight:700;margin-bottom:2px}
+.contact-body .big{font-size:15px;font-weight:600;color:var(--t);line-height:1.4}
+.contact-body .small{font-size:12px;color:var(--m);margin-top:2px}
+
+/* ============ PAGES / ROUTER ============ */
+.page{display:none;min-height:60vh}
+.page.active{display:block;animation:fadeIn .3s var(--tm)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.bc{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px;color:var(--m2);margin-bottom:16px}
+.bc a{color:var(--m2)}
+.bc .sep{opacity:.5}
+.bc .cur{color:var(--t);font-weight:600}
+.chero{padding:24px 0 20px;border-bottom:1px solid var(--b);margin-bottom:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(22,163,74,.15),transparent 70%)}
+.chero h1{margin-bottom:10px;font-size:26px}
+.chero .hsub{font-size:14px;line-height:1.6;color:var(--m);margin-bottom:16px}
+.cat-page-hero{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start}
+.cicon{width:76px;height:76px;border-radius:20px;background:linear-gradient(135deg,rgba(22,163,74,.35),rgba(34,197,94,.08));border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;font-size:38px;box-shadow:0 12px 30px rgba(0,0,0,.4),inset 0 2px 0 rgba(255,255,255,.25);animation:iconF 4s ease-in-out infinite}
+.flt{display:flex;gap:6px;overflow-x:auto;margin:0 -16px 16px;padding:4px 16px 12px;scrollbar-width:none;scroll-snap-type:x mandatory}
+.flt::-webkit-scrollbar{display:none}
+.fc{padding:8px 14px;border-radius:var(--rpill);background:var(--glass);border:1px solid var(--b);font-size:12.5px;font-weight:600;color:var(--m);white-space:nowrap;flex-shrink:0;transition:all var(--tf);scroll-snap-align:start;min-height:36px;display:inline-flex;align-items:center}
+.fc.active{background:linear-gradient(135deg,var(--p),#059669);color:#fff;border-color:transparent}
+.fc:active{transform:scale(.95)}
+.cat-stats{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px}
+.cat-stats>div{display:flex;flex-direction:column;gap:2px}
+.cat-stats b{font-family:var(--fd);font-size:17px;font-weight:700;color:var(--t)}
+.cat-stats span{font-size:11px;color:var(--m2)}
+
+/* ============ FAB / BOTTOM NAV ============ */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:800;background:var(--hb);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-top:1px solid var(--b);display:flex;padding:6px 4px calc(6px + var(--safe-b));justify-content:space-around;align-items:center}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:8px 4px;border-radius:10px;color:var(--m2);font-size:10px;font-weight:600;transition:color var(--tf),background var(--tf);min-width:0;position:relative;background:none;border:none}
+.bn-item svg{width:22px;height:22px;transition:transform var(--tf)}
+.bn-item:active{transform:scale(.94)}
+.bn-item.active{color:var(--p)}
+.bn-item.active svg{filter:drop-shadow(0 0 6px var(--p))}
+.bn-item.bn-cta{background:linear-gradient(135deg,var(--p),#059669);color:#fff;padding:8px 12px;border-radius:14px;flex:0 0 auto;min-width:64px;box-shadow:0 6px 18px -4px rgba(22,163,74,.6)}
+.bn-item.bn-cta svg{width:26px;height:26px}
+.bn-item.bn-cta span{font-weight:700;font-size:10.5px}
+
+/* ============ MOBILE MENU ============ */
+.mm{position:fixed;inset:0;z-index:900;background:var(--bg);transform:translateY(100%);transition:transform 380ms cubic-bezier(.22,1,.36,1);display:flex;flex-direction:column;padding-top:var(--safe-t);overflow-y:auto}
+.mm.open{transform:none}
+.mm-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--b);flex-shrink:0}
+.mm-close{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:var(--s2);color:var(--t)}
+.mm-close svg{width:20px;height:20px}
+.mm-body{padding:12px 16px 32px}
+.mm-section{margin-bottom:20px}
+.mm-title{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--m2);margin-bottom:8px;padding-left:4px}
+.mm-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mm-list.single{grid-template-columns:1fr}
+.mm-list a{display:flex;align-items:center;gap:10px;padding:13px 14px;border-radius:12px;background:var(--glass);border:1px solid var(--b);font-size:14px;font-weight:600;color:var(--t);transition:all var(--tf)}
+.mm-list a:active{transform:scale(.97);border-color:var(--p)}
+.mm-list a .mm-emoji{font-size:18px;flex-shrink:0}
+.mm-list a .mm-txt{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ============ MODAL ============ */
+.mb{position:fixed;inset:0;z-index:1000;background:var(--ov);backdrop-filter:blur(8px);display:none;align-items:flex-end;justify-content:center;padding:0}
+.mb.open{display:flex}
+.mdl{background:var(--s);border-radius:22px 22px 0 0;padding:22px 18px calc(22px + var(--safe-b));width:100%;max-width:560px;max-height:92vh;overflow-y:auto;position:relative;animation:sheetUp .34s cubic-bezier(.22,1,.36,1);border-top:1px solid var(--b)}
+@keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.mdl::before{content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);width:38px;height:4px;border-radius:3px;background:var(--b);}
+.mc{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:var(--m);background:var(--s2);transition:all var(--tf)}
+.mc:active{transform:rotate(90deg)}
+.mc svg{width:16px;height:16px}
+.mdl h3{font-size:18px;font-weight:700;margin-bottom:4px;margin-top:8px;padding-right:40px}
+.mdl .sub{font-size:13px;color:var(--m);margin-bottom:16px}
+
+/* ============ FORMS ============ */
+.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.fg label{font-size:12.5px;font-weight:600;color:var(--t)}
+.fg input,.fg textarea,.fg select{width:100%;padding:13px 14px;border-radius:12px;background:var(--s2);border:1px solid var(--b);color:var(--t);font-family:inherit;font-size:15px;transition:border-color var(--tf)}
+.fg input:focus,.fg textarea:focus,.fg select:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 3px rgba(22,163,74,.15)}
+.fg textarea{resize:vertical;min-height:76px}
+.form-hint{font-size:11px;color:var(--m2);margin-top:8px;text-align:center}
+.form-err{color:var(--hot);font-size:12px;margin-top:6px;display:none;font-weight:600}
+.form-err.show{display:block}
+.slots{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}
+.slot{padding:10px;border-radius:11px;background:var(--s2);border:1px solid var(--b);font-size:12px;font-weight:600;text-align:center;cursor:pointer;transition:all var(--tf);line-height:1.3}
+.slot:active{transform:scale(.96)}
+.slot.active{background:linear-gradient(135deg,var(--p),#059669);color:#fff;border-color:transparent}
+
+/* ============ CALC ============ */
+.prg{display:flex;gap:5px;margin:14px 0 20px}
+.prg span{flex:1;height:4px;border-radius:2px;background:var(--s3);transition:background var(--tf)}
+.prg span.active{background:linear-gradient(90deg,var(--p),var(--cy))}
+.stp{display:none;flex-direction:column;gap:10px}
+.stp.active{display:flex;animation:fadeSlide .3s}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.stp .lbl{font-size:13.5px;font-weight:600;color:var(--t)}
+.sop{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sop.single{grid-template-columns:1fr}
+.so{padding:13px 14px;border-radius:12px;background:var(--s2);border:1px solid var(--b);text-align:left;font-size:13.5px;font-weight:600;color:var(--t);transition:all var(--tf);cursor:pointer;min-height:48px;line-height:1.3}
+.so:active{transform:scale(.97)}
+.so.selected{border-color:var(--p);background:rgba(22,163,74,.14);box-shadow:0 0 0 3px rgba(22,163,74,.12)}
+.ci{width:100%;padding:13px 14px;border-radius:12px;background:var(--s2);border:1px solid var(--b);color:var(--t);font-family:inherit;font-size:15px}
+.ci:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 3px rgba(22,163,74,.15)}
+.sn{display:flex;gap:8px;margin-top:18px}
+.sn .btn{flex:1}
+.rp{font-family:var(--fd);font-size:28px;font-weight:800;letter-spacing:-.02em;background:linear-gradient(135deg,var(--p),var(--cy));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1;margin-bottom:4px}
+.rh2{font-size:12px;color:var(--m);margin-bottom:14px}
+
+/* ============ VM CHAT ============ */
+.vm-chat{display:flex;flex-direction:column;gap:12px;max-height:52vh;overflow-y:auto;padding-right:4px;margin:8px 0}
+.vm-msg{display:flex;gap:8px;align-items:flex-start;animation:vmIn .3s}
+@keyframes vmIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.vm-av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--p),#059669);display:grid;place-items:center;color:#fff;font-weight:700;font-size:10px;flex-shrink:0;letter-spacing:-.03em}
+.vm-bubble{background:var(--s2);border:1px solid var(--b);border-radius:14px 14px 14px 4px;padding:11px 14px;font-size:13.5px;line-height:1.5;color:var(--t);max-width:82%}
+.vm-msg.user{flex-direction:row-reverse}
+.vm-msg.user .vm-bubble{background:linear-gradient(135deg,var(--p),#059669);color:#fff;border-color:transparent;border-radius:14px 14px 4px 14px}
+.vm-msg.user .vm-av{background:var(--s3);color:var(--m);font-size:12px}
+.vm-options{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.vm-opt{padding:10px 14px;border-radius:11px;background:var(--s2);border:1px solid var(--b);color:var(--t);font-size:13px;font-weight:600;cursor:pointer;text-align:left;transition:all var(--tf);min-height:40px}
+.vm-opt:active{transform:scale(.96);border-color:var(--p)}
+.vm-price{background:linear-gradient(135deg,rgba(22,163,74,.16),rgba(22,163,74,.06));border:1px solid rgba(22,163,74,.35);border-radius:12px;padding:12px;margin-top:6px}
+.vm-price b{display:block;font-family:var(--fd);font-size:18px;font-weight:700;color:#4ADE80;letter-spacing:-.02em;margin-bottom:3px}
+.vm-price span{font-size:11.5px;color:var(--m)}
+
+/* ============ TOAST ============ */
+.toast{position:fixed;bottom:calc(88px + var(--safe-b));left:50%;transform:translateX(-50%) translateY(20px);background:var(--s);border:1px solid var(--bs);border-radius:12px;padding:11px 16px;font-size:13px;font-weight:600;box-shadow:var(--shadow);z-index:1100;opacity:0;pointer-events:none;transition:all var(--tm);display:flex;align-items:center;gap:8px;max-width:90vw}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast svg{width:16px;height:16px;color:var(--p);flex-shrink:0}
+
+/* ============ REVEAL ============ */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .55s var(--tm),transform .55s var(--tm)}
+.rv.visible{opacity:1;transform:none}
+
+/* ============ FAB ============ */
+.fab-wrap{position:fixed;right:14px;bottom:calc(88px + var(--safe-b));z-index:700;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.fab-list{display:flex;flex-direction:column;gap:8px;opacity:0;transform:translateY(20px) scale(.9);pointer-events:none;transition:all var(--tm);transform-origin:bottom right}
+.fab-list.open{opacity:1;transform:none;pointer-events:auto}
+.fab{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;color:#fff;box-shadow:var(--shadow);transition:transform var(--tf);position:relative}
+.fab:active{transform:scale(.9)}
+.fab svg{width:22px;height:22px}
+.f-wa{background:#25D366}
+.f-tg{background:#229ED9}
+.f-call{background:linear-gradient(135deg,var(--p),#059669)}
+.f-sos{background:linear-gradient(135deg,#EF4444,#DC2626)}
+.fab-main{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--p),#059669);color:#fff;display:grid;place-items:center;box-shadow:0 12px 28px -6px rgba(22,163,74,.7);transition:transform var(--tm);position:relative}
+.fab-main:active{transform:scale(.92)}
+.fab-main svg{width:24px;height:24px;transition:transform var(--tm)}
+.fab-main.open svg{transform:rotate(135deg)}
+.fab-main::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:2px solid var(--p);opacity:.5;animation:ring 2.4s infinite}
+@keyframes ring{0%{transform:scale(1);opacity:.5}100%{transform:scale(1.3);opacity:0}}
+
+/* ============ PROOF ============ */
+#proof{position:fixed;left:12px;right:12px;bottom:calc(88px + var(--safe-b));z-index:710;background:var(--s);border:1px solid var(--b);border-radius:12px;padding:10px 14px;display:flex;gap:8px;align-items:center;box-shadow:var(--shadow);transform:translateY(140px);transition:.5s cubic-bezier(.22,1,.36,1);font-size:12.5px;font-weight:600;max-width:340px}
+#proof.show{transform:none}
+@media(min-width:640px){#proof{left:50%;transform:translateX(-50%) translateY(140px)}#proof.show{transform:translateX(-50%) translateY(0)}}
+
+/* ============ MODAL EMERGENCY ============ */
+.em-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.em-grid .so{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;font-size:13.5px;padding:14px}
+
+/* ============ MISC ============ */
+.section-sep{height:1px;background:var(--b);margin:8px 0}
+.divider-tech{height:2px;margin:18px 0;background:linear-gradient(90deg,transparent,var(--p),transparent);position:relative;overflow:hidden}
+.divider-tech::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0,rgba(255,255,255,.9) 50%,transparent 100%);animation:divScan 3s infinite}
+@keyframes divScan{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div id="progressFill"></div></div>
+
+<!-- HEADER -->
+<header class="hd"><div class="wrap hdi">
+<a href="#home" class="lg"><div class="lgm">MAG</div><div class="lgt">MAG-СЕРВИС<small>Мастерская Андрея Гатина</small></div></a>
+<div class="hdr">
+<button class="tt" onclick="toggleTheme()" aria-label="Тема">
+<svg class="is" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+<svg class="im" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+</button>
+<button class="burger" onclick="openMenu()" aria-label="Меню">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+</button>
+</div>
+</div></header>
+
+<main>
+
+<!-- ==================== HOME ==================== -->
+<section class="page active" data-page="home">
+
+<!-- HERO -->
+<div class="hero"><div class="wrap">
+<div class="hero-badge"><span class="dot"></span>Работаем с 2016 · Менделеева, 11</div>
+<h1 class="h1 rv d1">Ремонт техники<br><span class="ac">от смартфона до кофемашины</span></h1>
+<p class="hero-sub rv d2">11 категорий, бесплатная диагностика, гарантия до 12 месяцев. Покажем причину поломки и назовём точную цену <b style="color:var(--t)">до</b> начала работ.</p>
+<div class="hero-cta rv d3">
+<button class="btn bp" onclick="openVM()">🔧 Узнать цену за 30 секунд</button>
+<div class="hero-cta-row">
+<a href="https://wa.me/79045485004" class="btn bs" target="_blank" rel="noopener">WhatsApp</a>
+<button class="btn btn-em" onclick="openEmergency()">🚨 Срочно!</button>
+</div>
+</div>
+<div class="hero-meta rv d4">
+<span><span class="dl"></span><b>Открыто</b> · ПН–ПТ 10–20</span>
+<span>СБ–ВС 11–18</span>
+</div>
+
+<!-- 3D PHONE -->
+<div class="hero-visual rv">
+<div class="hero-leds"><span class="hero-led red"></span><span class="hero-led yellow"></span><span class="hero-led green"></span></div>
+<div class="phone3d">
+<div class="phone-body">
+<div class="phone-screen">
+<div class="phone-notch"></div>
+<div class="ps-content">
+<div class="ps-head"><span>9:41</span><span>🔋 87%</span></div>
+<div class="ps-title">MAG-СЕРВИС</div>
+<div class="ps-card hi"><b>⚙️ Ремонт идёт</b>iPhone 13 · Дисплей<div class="ps-bar"><i></i></div></div>
+<div class="ps-card"><b>✅ Диагностика</b>0 ₽ · Готово</div>
+<div class="ps-price">1 500 ₽ <s>1 800</s> <em>−15%</em></div>
+<div class="ps-btn">Оплата после проверки →</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fchip fc1">📱</div>
+<div class="fchip fc2">💻</div>
+<div class="fchip fc3">☕</div>
+<div class="fchip fc4">🎮</div>
+</div>
+</div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marq"><div class="marq-in">⚡ СРОЧНО ЗА 60 МИН &nbsp;•&nbsp; 🔍 ДИАГНОСТИКА 0 ₽ &nbsp;•&nbsp; 🛡️ ГАРАНТИЯ 12 МЕС &nbsp;•&nbsp; 🚗 КУРЬЕР &nbsp;•&nbsp; ☕ 🤖 📺 🎮 ⌚ 📱 &nbsp;•&nbsp; ⚡ СРОЧНО ЗА 60 МИН &nbsp;•&nbsp; 🔍 ДИАГНОСТИКА 0 ₽ &nbsp;•&nbsp; 🛡️ ГАРАНТИЯ 12 МЕС &nbsp;•&nbsp; 🚗 КУРЬЕР &nbsp;•&nbsp;</div></div>
+
+<!-- STATS -->
+<div class="wrap"><div class="stats-grid">
+<div class="stat-card rv"><b><span data-cnt="15000">0</span>+</b><span>ремонтов с 2016</span></div>
+<div class="stat-card rv"><b>4.9 ★</b><span>рейтинг · 500+ отзывов</span></div>
+<div class="stat-card rv"><b><span data-cnt="11">0</span></b><span>категорий техники</span></div>
+<div class="stat-card rv"><b><span data-cnt="60">0</span> мин</b><span>срочный ремонт</span></div>
+</div>
+
+<!-- TIMER -->
+<div class="timerbar rv">
+<div><b>🎁 Скидка −15% на первый ремонт до конца дня</b><div class="cap">Назовите промокод <b style="color:var(--p)">MAG15</b> при заявке</div></div>
+<div class="timerbox">
+<div><span id="th">05</span><small>часов</small></div>
+<div><span id="tm">12</span><small>минут</small></div>
+<div><span id="ts">30</span><small>секунд</small></div>
+</div>
+</div>
+</div>
+
+<!-- CATEGORIES -->
+<div class="sec"><div class="wrap">
+<div class="sh rv"><h2 class="h2">11 категорий техники</h2><p class="tx">Кликните — увидите все услуги и цены по направлению.</p></div>
+<div class="cat-grid" id="homeCats"></div>
+</div></div>
+
+<!-- REPAIR LAB / EXPLODED -->
+<div class="lab"><div class="wrap lab-inner">
+<div class="hud-label-top rv">
+<span>⚡ MAG-LAB</span><span class="sep">|</span>
+<span>СТАТУС: <b style="color:#22C55E">ONLINE</b></span>
+</div>
+<h2 class="rv">Как мы чиним — <span class="glitch">изнутри</span></h2>
+<p class="tx rv">5 слоёв разборки: стекло → дисплей → рамка → АКБ → плата. Мы показываем схему и диагностику на каждом шаге.</p>
+
+<div class="exploded-wrap rv">
+<div class="exploded exploded-open" id="explodedView">
+<div class="exploded-inner">
+<div class="exp-layer exp-l6"><div class="exp-cover"></div></div>
+<div class="exp-layer exp-l5"><div class="exp-board"></div></div>
+<div class="exp-layer exp-l4"><div class="exp-battery"></div></div>
+<div class="exp-layer exp-l3"><div class="exp-frame"></div></div>
+<div class="exp-layer exp-l2"><div class="exp-display"></div></div>
+<div class="exp-layer exp-l1"><div class="exp-screen"></div></div>
+</div>
+</div>
+</div>
+<div class="exp-controls rv">
+<button class="btn bp btn-sm" onclick="toggleExploded()">🔧 Разборка / сборка</button>
+<span class="exp-chip"><span class="dot"></span>Схема активна</span>
+</div>
+
+<div class="repair-log rv">
+<div class="rl-head">
+<div class="dots"><i></i><i></i><i></i></div>
+<b>REPAIR_LOG // терминал мастера</b>
+</div>
+<div class="rl-body" id="repairLog">
+<div class="rl-line"><span class="t">10:14</span><span class="s">[INIT] Диагностика iPhone 13 Pro…</span></div>
+<div class="rl-line"><span class="t">10:14</span><span class="s warn">[WARN] Дисплей: трещина</span></div>
+<div class="rl-line"><span class="t">10:15</span><span class="s err">[FAIL] Touch IC: обрыв</span></div>
+<div class="rl-line"><span class="t">10:16</span><span class="s">[PLAN] Замена дисплейного модуля</span></div>
+<div class="rl-line"><span class="t">10:42</span><span class="s">[REPAIR] Установка дисплея…</span></div>
+<div class="rl-line"><span class="t">10:54</span><span class="s">[TEST] True Tone — OK</span></div>
+<div class="rl-line"><span class="t">10:55</span><span class="s ok">[DONE] Готово · 1 500 ₽</span></div>
+</div>
+</div>
+
+<!-- 3D CUBE -->
+<div class="cube-stage rv">
+<div class="cube3d">
+<div class="cube-face">📱</div>
+<div class="cube-face">💻</div>
+<div class="cube-face">📺</div>
+<div class="cube-face">☕</div>
+<div class="cube-face">🎮</div>
+<div class="cube-face">🤖</div>
+</div>
+</div>
+</div></div>
+
+<!-- POPULAR SERVICES -->
+<div class="sec"><div class="wrap">
+<div class="sh rv"><h2 class="h2">Популярные услуги</h2><p class="tx">Точную цену назовём после бесплатной диагностики.</p></div>
+<div class="svc-card badge-hit rv">
+<div class="svc-head">
+<div class="svc-icon">📱</div>
+<div class="svc-titles">
+<span class="bdg hot">Хит</span>
+<h3 style="margin-top:6px">Замена экрана смартфона</h3>
+<p class="svc-desc">Android и Apple. Оригиналы и аналоги, калибровка, True Tone.</p>
+</div>
+</div>
+<div class="svc-foot">
+<div class="svc-price">от 1 500 <small>₽</small></div>
+<button class="btn bp btn-sm" onclick="openCalc('Смартфоны','Замена дисплея')">Рассчитать</button>
+</div>
+</div>
+
+<div class="svc-card rv">
+<div class="svc-head">
+<div class="svc-icon">💻</div>
+<div class="svc-titles">
+<span class="bdg fast">Быстро</span>
+<h3 style="margin-top:6px">Чистка ноутбука + термопаста</h3>
+<p class="svc-desc">Устраняем перегрев и шум. 1–2 часа, обычно в тот же день.</p>
+</div>
+</div>
+<div class="svc-foot">
+<div class="svc-price">от 1 500 <small>₽</small></div>
+<button class="btn bp btn-sm" onclick="openCalc('Ноутбуки','Чистка + термопаста')">Рассчитать</button>
+</div>
+</div>
+
+<div class="svc-card rv">
+<div class="svc-head">
+<div class="svc-icon">💧</div>
+<div class="svc-titles">
+<span class="bdg">Сложный ремонт</span>
+<h3 style="margin-top:6px">Ремонт после воды</h3>
+<p class="svc-desc">Полная разборка, УЗ-чистка платы, восстановление дорожек.</p>
+</div>
+</div>
+<div class="svc-foot">
+<div class="svc-price">от 2 000 <small>₽</small></div>
+<button class="btn bp btn-sm" onclick="openCalc('Смартфоны','Ремонт после воды')">Рассчитать</button>
+</div>
+</div>
+</div></div>
+
+<!-- TRACKER -->
+<div class="sec" style="padding-top:0"><div class="wrap">
+<div class="sh rv"><h2 class="h2">Проверить ремонт</h2><p class="tx">Введите номер заказа — увидите стадию ремонта.</p></div>
+<div class="tracker-wrap rv">
+<div class="tracker-form">
+<input type="text" id="trackInput" placeholder="MAG-1234 или телефон">
+<button class="btn bp btn-sm" onclick="checkTrack()">Проверить</button>
+</div>
+<div id="trackResult"></div>
+</div>
+</div></div>
+
+<!-- PROCESS -->
+<div class="sec" style="padding-top:0"><div class="wrap">
+<div class="sh rv"><h2 class="h2">Как мы работаем</h2><p class="tx">4 шага — от заявки до готового устройства.</p></div>
+<div class="proc-list">
+<div class="proc-card rv"><div class="proc-scene"><span class="ic">📲</span></div><div class="proc-body"><span class="proc-num">01</span><h3>Заявка</h3><p>Опишите проблему в WhatsApp или через форму. Мастер принимает заявку.</p></div></div>
+<div class="proc-card rv"><div class="proc-scene"><span class="ic">🔬</span></div><div class="proc-body"><span class="proc-num">02</span><h3>Диагностика</h3><p>Разбираем при вас, проверяем каждый компонент. Показываем реальную причину.</p></div></div>
+<div class="proc-card rv"><div class="proc-scene"><span class="ic">📋</span></div><div class="proc-body"><span class="proc-num">03</span><h3>Согласование</h3><p>Фиксируем цену и срок в квитанции. Начинаем после вашего «да».</p></div></div>
+<div class="proc-card rv"><div class="proc-scene"><span class="ic">🛠️</span></div><div class="proc-body"><span class="proc-num">04</span><h3>Сборка и выдача</h3><p>Собираем, тестируем все функции, отдаём с гарантией до 12 мес.</p></div></div>
+</div>
+</div></div>
+
+<!-- BEFORE/AFTER -->
+<div class="sec" style="padding-top:0"><div class="wrap">
+<div class="sh rv"><h2 class="h2">До и после</h2><p class="tx">Потяните ползунок — сравните результат ремонта.</p></div>
+<div class="rv" data-ba>
+<div class="ba-wrap">
+<div class="ba-side ba-before"><div class="ba-emoji">📱💥</div><b>Трещина, сенсор не работает</b><span class="ba-crack">iPhone 13 · до ремонта</span></div>
+<div class="ba-side ba-after"><div class="ba-emoji">📱✨</div><b>Новый дисплей за 2 часа</b><span class="ba-ok">гарантия 12 мес · 1 500 ₽</span></div>
+<span class="ba-tag l">ДО</span>
+<span class="ba-tag r">ПОСЛЕ</span>
+<div class="ba-handle"><div class="ba-knob">↔</div></div>
+</div>
+</div>
+</div></div>
+
+<!-- REVIEWS -->
+<div class="sec" style="padding-top:0"><div class="wrap">
+<div class="sh rv"><h2 class="h2">Отзывы клиентов</h2><p class="tx">500+ отзывов на Яндекс.Картах. Рейтинг — 4.9.</p></div>
+<div class="rev-card rv">
+<div class="rev-head"><div class="rev-av">А</div><div><div class="rev-name">Алексей М.</div><div class="rev-meta">iPhone 13 · 2 дня назад</div></div><div class="rev-stars">★★★★★</div></div>
+<p class="rev-text">Разбил экран, позвонил утром — к обеду забрал. Заменили при мне, всё показали. <b>Очень доволен.</b></p>
+</div>
+<div class="rev-card rv">
+<div class="rev-head"><div class="rev-av">М</div><div><div class="rev-name">Мария К.</div><div class="rev-meta">MacBook Air · неделю назад</div></div><div class="rev-stars">★★★★★</div></div>
+<p class="rev-text">Ноутбук залила чаем, думала — всё. Восстановили плату, работает как новый. <b>Спасли данные.</b></p>
+</div>
+<div class="rev-card rv">
+<div class="rev-head"><div class="rev-av">Д</div><div><div class="rev-name">Дмитрий В.</div><div class="rev-meta">De'Longhi · 3 дня назад</div></div><div class="rev-stars">★★★★★</div></div>
+<p class="rev-text">Машина гудела, вода не шла. Оказалось — помпа. Заменили за день. <b>Советую.</b></p>
+</div>
+</div></div>
+
+<!-- FAQ -->
+<div class="sec" style="padding-top:0"><div class="wrap">
+<div class="sh rv"><h2 class="h2">Частые вопросы</h2><p class="tx">Не нашли ответ? Напишите — ответим за пару минут.</p></div>
+<details class="faq-item rv" open><summary>Сколько стоит диагностика? <span class="faq-ic"></span></summary><div class="faq-body">Всегда <b>бесплатная</b>. Разберём, найдём причину, назовём цену. Если ремонт не нужен — ничего не платите.</div></details>
+<details class="faq-item rv"><summary>Как быстро сделаете ремонт? <span class="faq-ic"></span></summary><div class="faq-body">Простые работы — <b>от 30 минут до 2 часов</b>. Сложные — <b>от 1 до 5 дней</b>.</div></details>
+<details class="faq-item rv"><summary>Какая гарантия? <span class="faq-ic"></span></summary><div class="faq-body">От <b>12 дней до 12 месяцев</b>. Всё прописано в квитанции. При повторе — переделаем бесплатно.</div></details>
+<details class="faq-item rv"><summary>Есть курьер? <span class="faq-ic"></span></summary><div class="faq-body">Да. По Екатеринбургу — <b>от 300 ₽</b>. Из других городов — приём по СДЭК.</div></details>
+</div></div>
+
+<!-- CTA -->
+<div class="sec" style="padding-top:0"><div class="wrap">
+<div class="cta-box rv">
+<h2 class="h2">Не уверены, сколько будет стоить?</h2>
+<p class="tx">Приходите на бесплатную диагностику или напишите в WhatsApp — назовём точную цену до начала работ.</p>
+<div class="cta-btns">
+<a href="https://wa.me/79045485004" class="btn bp" target="_blank" rel="noopener">WhatsApp</a>
+<a href="https://t.me/mservice66" class="btn bs" target="_blank" rel="noopener">Telegram</a>
+<a href="tel:+79045485004" class="btn bg2">Позвонить</a>
+</div>
+</div>
+</div></div>
+
+</section>
+
+<!-- ==================== CATEGORY PAGE ==================== -->
+<section class="page" data-page="category">
+<div class="chero"><div class="wrap">
+<div class="bc" id="catBc"></div>
+<div class="cat-page-hero">
+<div>
+<h1 class="h1" id="catH1"></h1>
+<p class="hsub" id="catSub"></p>
+<div class="hero-cta">
+<a href="https://wa.me/79045485004" class="btn bp" target="_blank" rel="noopener">Записаться в WhatsApp</a>
+<button class="btn bs" onclick="openCalc()">Рассчитать цену</button>
+</div>
+<div class="cat-stats" id="catStats"></div>
+</div>
+<div class="cicon" id="catIcon"></div>
+</div>
+</div></div>
+<div class="sec" style="padding-top:20px"><div class="wrap">
+<div class="flt" id="catFilters"></div>
+<div id="catServices"></div>
+</div></div>
+</section>
+
+<!-- ==================== PRICES PAGE ==================== -->
+<section class="page" data-page="prices">
+<div class="chero"><div class="wrap">
+<div class="bc"><a href="#home">Главная</a><span class="sep">/</span><span class="cur">Цены</span></div>
+<h1 class="h1">Цены на ремонт</h1>
+<p class="hsub">Полный прайс по 11 категориям. Фильтруйте или ищите по названию.</p>
+</div></div>
+<div class="sec" style="padding-top:20px"><div class="wrap">
+<div class="flt" id="priceFilters"></div>
+<input class="ci" id="priceSearch" placeholder="🔍 Поиск: экран, помпа, чистка..." style="margin-bottom:16px">
+<div id="priceList"></div>
+</div></div>
+</section>
+
+<!-- ==================== BRANDS PAGE ==================== -->
+<section class="page" data-page="brands">
+<div class="chero"><div class="wrap">
+<div class="bc"><a href="#home">Главная</a><span class="sep">/</span><span class="cur">Бренды</span></div>
+<h1 class="h1">Ремонт по брендам</h1>
+<p class="hsub">Специализация по маркам — знаем нюансы разборки и запчасти.</p>
+</div></div>
+<div class="sec" style="padding-top:20px"><div class="wrap">
+<div class="cat-grid" id="brandsList"></div>
+</div></div>
+</section>
+
+<!-- ==================== BRAND DETAIL ==================== -->
+<section class="page" data-page="brand">
+<div class="chero"><div class="wrap">
+<div class="bc" id="brandBc"></div>
+<h1 class="h1" id="brandH1"></h1>
+<p class="hsub" id="brandSub"></p>
+<div class="cat-stats" id="brandStats"></div>
+</div></div>
+<div class="sec" style="padding-top:20px"><div class="wrap">
+<div id="brandNote"></div>
+<div id="brandServices"></div>
+</div></div>
+</section>
+
+<!-- ==================== GALLERY ==================== -->
+<section class="page" data-page="gallery">
+<div class="chero"><div class="wrap">
+<div class="bc"><a href="#home">Главная</a><span class="sep">/</span><span class="cur">Галерея</span></div>
+<h1 class="h1">Фото сервиса</h1>
+<p class="hsub">Мастерская на Менделеева, 11. Рабочее место, оборудование, работы.</p>
+</div></div>
+<div class="sec" style="padding-top:20px"><div class="wrap">
+<div class="cat-grid">
+<div class="cat3d"><div class="cat3d-ic" style="--g1:rgba(22,163,74,.5);--g2:rgba(34,197,94,.1)">🔧</div><div class="cat3d-info"><h3>Рабочее место</h3><span class="cat3d-cap">Мастерская</span></div></div>
+<div class="cat3d"><div class="cat3d-ic" style="--g1:rgba(255,154,61,.5);--g2:rgba(255,154,61,.1)">⚙️</div><div class="cat3d-info"><h3>Паяльная станция</h3><span class="cat3d-cap">BGA-пайка</span></div></div>
+<div class="cat3d"><div class="cat3d-ic" style="--g1:rgba(139,92,246,.5);--g2:rgba(139,92,246,.1)">🔬</div><div class="cat3d-info"><h3>Микроскоп</h3><span class="cat3d-cap">Тринокулярный</span></div></div>
+<div class="cat3d"><div class="cat3d-ic" style="--g1:rgba(6,182,212,.5);--g2:rgba(6,182,212,.1)">💧</div><div class="cat3d-info"><h3>УЗ-ванна</h3><span class="cat3d-cap">Чистка плат</span></div></div>
+<div class="cat3d"><div class="cat3d-ic" style="--g1:rgba(255,61,240,.45);--g2:rgba(255,61,240,.1)">📊</div><div class="cat3d-info"><h3>Стенды</h3><span class="cat3d-cap">Диагностика</span></div></div>
+<div class="cat3d"><div class="cat3d-ic" style="--g1:rgba(182,255,61,.4);--g2:rgba(182,255,61,.1)">📦</div><div class="cat3d-info"><h3>Запчасти</h3><span class="cat3d-cap">Оригинал + Tier-1</span></div></div>
+</div>
+<div style="text-align:center;margin-top:20px" class="rv">
+<a href="https://wa.me/79045485004" class="btn bp" target="_blank" rel="noopener">Отправить фото</a>
+</div>
+</div></div>
+</section>
+
+<!-- ==================== ABOUT ==================== -->
+<section class="page" data-page="o-servise">
+<div class="chero"><div class="wrap">
+<div class="bc"><a href="#home">Главная</a><span class="sep">/</span><span class="cur">О сервисе</span></div>
+<h1 class="h1">О сервисе</h1>
+<p class="hsub">Мастерская Андрея Гатина. Ремонтируем технику с 2016 года. Честно, с гарантией до 12 месяцев.</p>
+</div></div>
+<div class="sec" style="padding-top:20px"><div class="wrap">
+<div class="stats-grid">
+<div class="stat-card rv"><b>2016</b><span>год основания</span></div>
+<div class="stat-card rv"><b>15 000+</b><span>ремонтов</span></div>
+<div class="stat-card rv"><b>4.9 / 5</b><span>рейтинг</span></div>
+<div class="stat-card rv"><b>11</b><span>категорий</span></div>
+</div>
+<div class="sh rv" style="margin-top:24px"><h2 class="h2">Наши мастера</h2></div>
+<div class="proc-list">
+<div class="proc-card rv"><div class="proc-scene"><span class="ic">👨‍🔧</span></div><div class="proc-body"><h3>Андрей Гатин</h3><p class="cap" style="color:var(--p);font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px">Основатель · 12 лет</p><p>Сложный ремонт после воды, пайка плат, BGA-пайка уровня iPhone и MacBook.</p></div></div>
+<div class="proc-card rv"><div class="proc-scene"><span class="ic">👨‍💻</span></div><div class="proc-body"><h3>Михаил</h3><p class="cap" style="color:var(--p);font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px">Ноутбуки · 8 лет</p><p>Ноутбуки, ПК, моноблоки, консоли. Чистка, апгрейд, замена матриц.</p></div></div>
+<div class="proc-card rv"><div class="proc-scene"><span class="ic">👨‍🔬</span></div><div class="proc-body"><h3>Дмитрий</h3><p class="cap" style="color:var(--p);font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px">ТВ и бытовая · 10 лет</p><p>Телевизоры, кофемашины, робот-пылесосы, мелкая бытовая. Выезд на дом.</p></div></div>
+</div>
+</div></div>
+</section>
+
+<!-- ==================== CONTACTS ==================== -->
+<section class="page" data-page="kontakty">
+<div class="chero"><div class="wrap">
+<div class="bc"><a href="#home">Главная</a><span class="sep">/</span><span class="cur">Контакты</span></div>
+<h1 class="h1">Контакты</h1>
+<p class="hsub">Приезжайте на Менделеева, 11 или свяжитесь в WhatsApp / Telegram.</p>
+</div></div>
+<div class="sec" style="padding-top:20px"><div class="wrap">
+<div class="contact-card rv">
+<div class="contact-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+<div class="contact-body"><h3>Адрес</h3><div class="big">г. Екатеринбург, ул. Менделеева, 11</div><div class="small">Пионерский район. 5 мин от Парк Хауса</div></div>
+</div>
+<div class="contact-card rv">
+<div class="contact-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+<div class="contact-body"><h3>Режим работы</h3><div class="big">ПН–ПТ: 10:00–20:00</div><div class="small">СБ–ВС: 11:00–18:00 · без обеда</div></div>
+</div>
+<div class="contact-card rv">
+<div class="contact-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+<div class="contact-body"><h3>Телефон / WhatsApp</h3><div class="big"><a href="tel:+79045485004" style="color:var(--t)">+7 (904) 548-50-04</a></div><div class="small">Telegram: @mservice66</div></div>
+</div>
+<div class="rv" style="margin-top:16px">
+<a href="https://yandex.ru/maps/?text=Екатеринбург,Менделеева,11" class="btn bp" style="width:100%" target="_blank" rel="noopener">📍 Открыть в Яндекс.Картах</a>
+</div>
+</div></div>
+</section>
+
+<!-- ==================== BLOG (simplified) ==================== -->
+<section class="page" data-page="blog">
+<div class="chero"><div class="wrap">
+<div class="bc"><a href="#home">Главная</a><span class="sep">/</span><span class="cur">Блог</span></div>
+<h1 class="h1">Блог MAG-СЕРВИС</h1>
+<p class="hsub">Полезные статьи от мастеров. Простым языком, без воды.</p>
+</div></div>
+<div class="sec" style="padding-top:20px"><div class="wrap">
+<div class="svc-card rv" onclick="location.hash='#blog';showToast('Скоро будет статья')"><div class="svc-head"><div class="svc-icon">🔋</div><div class="svc-titles"><h3>Как понять, что пора менять аккумулятор</h3><p class="svc-desc">5 признаков, что батарея умирает. Что будет, если тянуть.</p></div></div></div>
+<div class="svc-card rv" onclick="location.hash='#blog';showToast('Скоро будет статья')"><div class="svc-head"><div class="svc-icon">💧</div><div class="svc-titles"><h3>Телефон упал в воду: 5 ошибок</h3><p class="svc-desc">Что делать в первые 5 минут. Почему рис — миф.</p></div></div></div>
+<div class="svc-card rv" onclick="location.hash='#blog';showToast('Скоро будет статья')"><div class="svc-head"><div class="svc-icon">💻</div><div class="svc-titles"><h3>ТО ноутбука раз в год</h3><p class="svc-desc">Почему ноутбук через 1–2 года начинает греться и тормозить.</p></div></div></div>
+<div class="svc-card rv" onclick="location.hash='#blog';showToast('Скоро будет статья')"><div class="svc-head"><div class="svc-icon">📱</div><div class="svc-titles"><h3>Как не переплатить за ремонт iPhone</h3><p class="svc-desc">6 схем, на которых наживаются недобросовестные сервисы.</p></div></div></div>
+</div></div>
+</section>
+
+<!-- ==================== PROMO (simplified) ==================== -->
+<section class="page" data-page="promo">
+<div class="chero"><div class="wrap">
+<div class="bc"><a href="#home">Главная</a><span class="sep">/</span><span class="cur">Акции</span></div>
+<h1 class="h1">Акции и бонусы</h1>
+<p class="hsub">Постоянные клиенты получают скидки и бонусы.</p>
+</div></div>
+<div class="sec" style="padding-top:20px"><div class="wrap">
+<div class="svc-card rv"><div class="svc-head"><div class="svc-icon">⚡</div><div class="svc-titles"><span class="bdg hot">Хит</span><h3 style="margin-top:6px">Срочный ремонт за 60 минут</h3><p class="svc-desc">Популярные работы делаем при вас: замена АКБ, дисплея, чистка ноутбука.</p></div></div><div class="svc-foot"><div class="svc-price">без записи</div><button class="btn bp btn-sm" onclick="openLead()">Записаться</button></div></div>
+
+<div class="svc-card rv"><div class="svc-head"><div class="svc-icon">🏠</div><div class="svc-titles"><span class="bdg fast">Выезд</span><h3 style="margin-top:6px">Диагностика на дому 0 ₽</h3><p class="svc-desc">ТВ, кофемашины, роботы-пылесосы. Мастер приедет сам.</p></div></div><div class="svc-foot"><div class="svc-price">от 0 <small>₽</small></div><button class="btn bp btn-sm" onclick="openLead()">Вызвать</button></div></div>
+
+<div class="svc-card rv"><div class="svc-head"><div class="svc-icon">🔄</div><div class="svc-titles"><h3>Trade-in: сдайте старое</h3><p class="svc-desc">Зачтём стоимость старого устройства в счёт ремонта. От 500 до 15 000 ₽.</p></div></div><div class="svc-foot"><div class="svc-price">от 500 <small>₽</small></div><button class="btn bp btn-sm" onclick="openLead()">Оценить</button></div></div>
+
+<div class="svc-card rv"><div class="svc-head"><div class="svc-icon">⭐</div><div class="svc-titles"><span class="bdg">За отзыв</span><h3 style="margin-top:6px">Бонус 300 ₽</h3><p class="svc-desc">За честный отзыв на Яндекс.Картах. Суммируется с другими акциями.</p></div></div><div class="svc-foot"><div class="svc-price">300 <small>₽</small></div><a href="https://yandex.ru/maps/org/" class="btn bp btn-sm" target="_blank" rel="noopener">Отзыв</a></div></div>
+
+<div class="svc-card rv"><div class="svc-head"><div class="svc-icon">🎂</div><div class="svc-titles"><span class="bdg">−10%</span><h3 style="margin-top:6px">Скидка в день рождения</h3><p class="svc-desc">В месяц вашего ДР — скидка 10% на любой ремонт.</p></div></div><div class="svc-foot"><div class="svc-price">−10<small>%</small></div><button class="btn bp btn-sm" onclick="openLead()">Указать дату</button></div></div>
+</div></div>
+</section>
+
+</main>
+
+<!-- ============ BOTTOM NAV ============ -->
+<nav class="bottom-nav" id="bottomNav">
+<button class="bn-item active" data-nav="home" onclick="navigateTo('#home')">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+<span>Главная</span>
+</button>
+<button class="bn-item" data-nav="prices" onclick="navigateTo('#prices')">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+<span>Цены</span>
+</button>
+<button class="bn-item bn-cta" onclick="openCalc()">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h5M8 18h3"/></svg>
+<span>Расчёт</span>
+</button>
+<a class="bn-item" href="https://wa.me/79045485004" target="_blank" rel="noopener">
+<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+<span>Чат</span>
+</a>
+<button class="bn-item" onclick="openMenu()">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+<span>Ещё</span>
+</button>
+</nav>
+
+<!-- ============ FAB ============ -->
+<div class="fab-wrap">
+<div class="fab-list" id="fabList">
+<a href="https://wa.me/79045485004" class="fab f-wa" target="_blank" rel="noopener">
+<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<a href="tel:+79045485004" class="fab f-call">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+</a>
+<button class="fab f-sos" onclick="openEmergency()">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 9v4M12 17h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+</button>
+</div>
+<button class="fab-main" id="fabMain" onclick="toggleFab()">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+</button>
+</div>
+
+<!-- ============ MOBILE MENU ============ -->
+<div class="mm" id="mm">
+<div class="mm-head">
+<div class="lg"><div class="lgm">MAG</div><div class="lgt">MAG-СЕРВИС<small>Мастерская Андрея Гатина</small></div></div>
+<button class="mm-close" onclick="closeMenu()">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+</button>
+</div>
+<div class="mm-body">
+<div class="mm-section">
+<div class="mm-title">Разделы</div>
+<div class="mm-list">
+<a href="#prices" onclick="closeMenu()"><span class="mm-emoji">💰</span><span class="mm-txt">Цены</span></a>
+<a href="#brands" onclick="closeMenu()"><span class="mm-emoji">🏷️</span><span class="mm-txt">Бренды</span></a>
+<a href="#gallery" onclick="closeMenu()"><span class="mm-emoji">🖼️</span><span class="mm-txt">Галерея</span></a>
+<a href="#blog" onclick="closeMenu()"><span class="mm-emoji">📖</span><span class="mm-txt">Блог</span></a>
+<a href="#promo" onclick="closeMenu()"><span class="mm-emoji">🎁</span><span class="mm-txt">Акции</span></a>
+<a href="#o-servise" onclick="closeMenu()"><span class="mm-emoji">ℹ️</span><span class="mm-txt">О сервисе</span></a>
+</div>
+</div>
+<div class="mm-section">
+<div class="mm-title">Категории</div>
+<div class="mm-list">
+<a href="#smartfony" onclick="closeMenu()"><span class="mm-emoji">📱</span><span class="mm-txt">Смартфоны</span></a>
+<a href="#noutbuki" onclick="closeMenu()"><span class="mm-emoji">💻</span><span class="mm-txt">Ноутбуки</span></a>
+<a href="#televizory" onclick="closeMenu()"><span class="mm-emoji">📺</span><span class="mm-txt">Телевизоры</span></a>
+<a href="#kofemashiny" onclick="closeMenu()"><span class="mm-emoji">☕</span><span class="mm-txt">Кофемашины</span></a>
+<a href="#roboty" onclick="closeMenu()"><span class="mm-emoji">🤖</span><span class="mm-txt">Роботы</span></a>
+<a href="#konsoli" onclick="closeMenu()"><span class="mm-emoji">🎮</span><span class="mm-txt">Консоли</span></a>
+<a href="#pk" onclick="closeMenu()"><span class="mm-emoji">🖥️</span><span class="mm-txt">ПК</span></a>
+<a href="#chasy" onclick="closeMenu()"><span class="mm-emoji">⌚</span><span class="mm-txt">Часы</span></a>
+<a href="#planshety" onclick="closeMenu()"><span class="mm-emoji">📲</span><span class="mm-txt">Планшеты</span></a>
+<a href="#breloki" onclick="closeMenu()"><span class="mm-emoji">🔑</span><span class="mm-txt">Брелоки</span></a>
+<a href="#bytovaya" onclick="closeMenu()"><span class="mm-emoji">🌀</span><span class="mm-txt">Бытовая</span></a>
+<a href="#kontakty" onclick="closeMenu()"><span class="mm-emoji">📍</span><span class="mm-txt">Контакты</span></a>
+</div>
+</div>
+<div class="mm-section">
+<div class="mm-title">Связаться</div>
+<div class="mm-list single">
+<a href="tel:+79045485004"><span class="mm-emoji">📞</span><span class="mm-txt">+7 (904) 548-50-04</span></a>
+<a href="https://wa.me/79045485004" target="_blank" rel="noopener"><span class="mm-emoji">💬</span><span class="mm-txt">WhatsApp</span></a>
+<a href="https://t.me/mservice66" target="_blank" rel="noopener"><span class="mm-emoji">✈️</span><span class="mm-txt">Telegram</span></a>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ============ MODALS ============ -->
+
+<!-- LEAD -->
+<div class="mb" id="leadModal" onclick="if(event.target===this)closeLead()">
+<div class="mdl">
+<button class="mc" onclick="closeLead()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+<h3>Оставить заявку</h3>
+<p class="sub">Перезвоним в течение 15 минут</p>
+<form id="leadForm" onsubmit="submitLead(event)">
+<div class="fg"><label>Ваше имя</label><input type="text" id="lf-name" placeholder="Как к вам обращаться" required></div>
+<div class="fg"><label>Телефон</label><input type="tel" id="lf-phone" placeholder="+7 (___) ___-__-__" required></div>
+<div class="fg"><label>Что случилось</label><textarea id="lf-msg" placeholder="Например: iPhone 13, разбит экран"></textarea></div>
+<div class="fg"><label>Когда удобно?</label>
+<div class="slots" id="slotGrid">
+<div class="slot" onclick="pickSlot(this,'Сегодня утром')">Сегодня<br>утром</div>
+<div class="slot" onclick="pickSlot(this,'Сегодня днём')">Сегодня<br>днём</div>
+<div class="slot" onclick="pickSlot(this,'Завтра утром')">Завтра<br>утром</div>
+<div class="slot" onclick="pickSlot(this,'Завтра днём')">Завтра<br>днём</div>
+<div class="slot" onclick="pickSlot(this,'В выходные')">В<br>выходные</div>
+<div class="slot" onclick="pickSlot(this,'Как можно быстрее')">Срочно!</div>
+</div>
+</div>
+<div class="fg"><label>Дата рождения <span style="color:var(--m2);font-weight:400">(для скидки)</span></label><input type="date" id="lf-bd"></div>
+<div class="form-err" id="leadErr">Заполните имя и телефон</div>
+<button type="submit" class="btn bp" style="width:100%;margin-top:10px">Отправить в WhatsApp</button>
+<p class="form-hint">Отправляя, вы соглашаетесь на обработку персональных данных</p>
+</form>
+</div>
+</div>
+
+<!-- VM -->
+<div class="mb" id="vmModal" onclick="if(event.target===this)closeVM()">
+<div class="mdl">
+<button class="mc" onclick="closeVM()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+<h3>Виртуальный мастер</h3>
+<p class="sub">Ответьте на 3 вопроса — узнаете цену</p>
+<div class="vm-chat" id="vmChat"></div>
+<div id="vmActions"></div>
+</div>
+</div>
+
+<!-- CALC -->
+<div class="mb" id="calcModal" onclick="if(event.target===this)closeCalc()">
+<div class="mdl">
+<button class="mc" onclick="closeCalc()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+<h3>Рассчитать стоимость</h3>
+<p class="sub">4 шага — увидите диапазон цены</p>
+<div class="prg"><span class="active" data-step="1"></span><span data-step="2"></span><span data-step="3"></span><span data-step="4"></span></div>
+<div class="stp active" data-step="1"><p class="lbl">Шаг 1. Категория</p><div class="sop" id="catOptions"></div></div>
+<div class="stp" data-step="2"><p class="lbl">Шаг 2. Что случилось</p><div class="sop single" id="serviceOptions"></div></div>
+<div class="stp" data-step="3"><p class="lbl">Шаг 3. Модель (необязательно)</p><input class="ci" id="modelInput" placeholder="iPhone 13 Pro, разбит экран"></div>
+<div class="stp" data-step="4">
+<p class="lbl">Примерная стоимость</p>
+<div class="rp" id="resultPrice">—</div>
+<p class="rh2">Точную цену назовём после бесплатной диагностики</p>
+<a href="https://wa.me/79045485004" class="btn bp" style="width:100%" target="_blank" rel="noopener">Уточнить в WhatsApp</a>
+</div>
+<div class="sn"><button class="btn bg2" id="btnBack" onclick="stepBack()" style="display:none">Назад</button><button class="btn bp" id="btnNext" onclick="stepNext()">Далее</button></div>
+</div>
+</div>
+
+<!-- EMERGENCY -->
+<div class="mb" id="emModal" onclick="if(event.target===this)closeEm()">
+<div class="mdl">
+<button class="mc" onclick="closeEm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+<div style="font-size:40px;text-align:center;margin-bottom:6px">🚨</div>
+<h3 style="text-align:center">Срочный ремонт</h3>
+<p class="sub" style="text-align:center">Работаем без очереди. Популярные ремонты — за 30–60 минут.</p>
+<div class="em-grid">
+<button class="so" onclick="emergency('Смартфон')">📱 Смартфон</button>
+<button class="so" onclick="emergency('Ноутбук')">💻 Ноутбук</button>
+<button class="so" onclick="emergency('Планшет')">📲 Планшет</button>
+<button class="so" onclick="emergency('Другое')">🔧 Другое</button>
+</div>
+<a href="tel:+79045485004" class="btn bp" style="width:100%;margin-bottom:8px">📞 Позвонить сейчас</a>
+<a href="https://wa.me/79045485004?text=СРОЧНО!%20Нужен%20срочный%20ремонт" class="btn bs" style="width:100%" target="_blank" rel="noopener">💬 WhatsApp со срочным</a>
+</div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>
+<span id="toastMsg">Готово</span>
+</div>
+
+<!-- PROOF -->
+<div id="proof">🔔 <span id="proofTxt"></span></div>
+
+<script>
+/* ==================== THEME ==================== */
+function toggleTheme(){const h=document.documentElement;const c=h.getAttribute('data-theme');h.setAttribute('data-theme',c==='dark'?'light':'dark');try{localStorage.setItem('theme',h.getAttribute('data-theme'))}catch(e){}
+const m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content',c==='dark'?'#FAFAFB':'#050506')}
+try{const s=localStorage.getItem('theme');if(s)document.documentElement.setAttribute('data-theme',s)}catch(e){}
+
+/* ==================== DATA ==================== */
+const CAT3D={smartfony:['📱','rgba(22,163,74,.5)','rgba(34,197,94,.1)'],planshety:['📲','rgba(59,130,246,.5)','rgba(59,130,246,.1)'],noutbuki:['💻','rgba(168,85,247,.5)','rgba(168,85,247,.1)'],pk:['🖥️','rgba(6,182,212,.45)','rgba(6,182,212,.1)'],televizory:['📺','rgba(255,154,61,.5)','rgba(255,154,61,.1)'],chasy:['⌚','rgba(255,61,240,.45)','rgba(255,61,240,.1)'],konsoli:['🎮','rgba(182,255,61,.4)','rgba(182,255,61,.1)'],breloki:['🔑','rgba(255,207,61,.45)','rgba(255,207,61,.1)'],roboty:['🤖','rgba(34,197,94,.5)','rgba(34,197,94,.1)'],kofemashiny:['☕','rgba(180,120,70,.55)','rgba(180,120,70,.1)'],bytovaya:['🌀','rgba(148,163,184,.5)','rgba(148,163,184,.1)']};
+
+const CATS={
+smartfony:{name:'Смартфоны',h1:'Ремонт смартфонов',sub:'iPhone, Samsung, Xiaomi, Honor, Google Pixel, OnePlus, realme, OPPO.',icon:'phone',stats:[['30 мин','мин. срок'],['от 800 ₽','аккумулятор'],['до 12 мес','гарантия']],filters:[['all','Все'],['screen','Экран'],['body','Корпус'],['battery','Питание'],['camera','Камера'],['water','Вода'],['port','Разъёмы'],['sound','Звук'],['software','ПО']],services:[
+{n:'Замена дисплея',bd:'Хит',c:'screen',d:'Оригиналы и аналоги OLED/IPS. Калибровка, True Tone.',t:'1–2 ч',w:'12 мес',p:1500,calc:'Замена дисплея'},
+{n:'Замена стекла',c:'screen',d:'Лазерная переклейка.',t:'1–3 дня',w:'3 мес',p:1200,calc:'Замена стекла',sec:1},
+{n:'Замена тачскрина',c:'body',d:'Сенсор не работает.',t:'1–3 дня',w:'6 мес',p:1500,calc:'Замена тачскрина',sec:1},
+{n:'Задняя крышка (лазер)',bd:'Лазер',bt:'fast',c:'body',d:'Снятие без повреждения корпуса.',t:'1–3 ч',w:'6 мес',p:1200,calc:'Замена задней крышки'},
+{n:'Замена АКБ',bd:'30 мин',bt:'fast',c:'battery',d:'Оригиналы и аналоги.',t:'30–60 мин',w:'12 мес',p:800,calc:'Замена аккумулятора'},
+{n:'Замена камеры',c:'camera',d:'Основная, фронтальная.',t:'1–2 ч',w:'6 мес',p:1200,calc:'Замена камеры',sec:1},
+{n:'Разъём зарядки',c:'port',d:'Lightning, USB-C.',t:'1–2 ч',w:'6 мес',p:900,calc:'Ремонт разъёма',sec:1},
+{n:'Ремонт звука',c:'sound',d:'Динамики, микрофоны.',t:'1–2 ч',w:'6 мес',p:1000,calc:'Ремонт звука',sec:1},
+{n:'Ремонт после воды',bd:'Сложный',bt:'hot',c:'water',d:'УЗ-чистка платы.',t:'2–5 дней',w:'3 мес',p:2000,calc:'Ремонт после воды'},
+{n:'Программный ремонт',c:'software',d:'Прошивка, разблокировка.',t:'1–3 ч',w:'30 дней',p:500,calc:'Программный ремонт',sec:1}
+]},
+planshety:{name:'Планшеты',h1:'Ремонт планшетов',sub:'iPad, Samsung Galaxy Tab, Huawei MatePad, Lenovo, Xiaomi Pad.',icon:'tablet',stats:[['1–2 дня','ремонт'],['от 2 500 ₽','дисплей'],['до 12 мес','гарантия']],filters:[['all','Все'],['screen','Экран'],['battery','Питание'],['port','Разъёмы'],['water','Вода']],services:[
+{n:'Замена дисплея',bd:'Хит',c:'screen',d:'Оригиналы и аналоги.',t:'1–2 дня',w:'12 мес',p:2500,calc:'Замена дисплея'},
+{n:'Замена стекла',c:'screen',d:'Лазерная переклейка.',t:'1–3 дня',w:'3 мес',p:1800,calc:'Замена стекла',sec:1},
+{n:'Замена АКБ',bd:'2 ч',bt:'fast',c:'battery',d:'Батареи с реальной ёмкостью.',t:'1–2 ч',w:'12 мес',p:1500,calc:'Замена аккумулятора'},
+{n:'Разъём зарядки',c:'port',d:'Lightning, USB-C.',t:'1–2 дня',w:'6 мес',p:1200,calc:'Ремонт разъёма',sec:1},
+{n:'Ремонт после воды',bd:'Сложный',bt:'hot',c:'water',d:'УЗ-чистка.',t:'3–7 дней',w:'3 мес',p:2000,calc:'Ремонт после воды'}
+]},
+noutbuki:{name:'Ноутбуки',h1:'Ремонт ноутбуков',sub:'Asus, Lenovo, HP, Apple, Acer, MSI, Dell, Xiaomi.',icon:'laptop',stats:[['1–2 дня','ремонт'],['от 1 500 ₽','чистка'],['до 12 мес','гарантия']],filters:[['all','Все'],['clean','Чистка'],['screen','Матрица'],['board','Плата'],['upgrade','Апгрейд'],['water','Вода']],services:[
+{n:'Чистка + термопаста',bd:'Хит',c:'clean',d:'Устраняем перегрев и шум.',t:'1–2 ч',w:'6 мес',p:1500,calc:'Чистка + термопаста'},
+{n:'Замена вентилятора',c:'clean',d:'Гудит, тарахтит.',t:'1–2 дня',w:'6 мес',p:2000,calc:'Замена вентилятора',sec:1},
+{n:'Замена матрицы',c:'screen',d:'Полосы, трещины.',t:'1–2 дня',w:'12 мес',p:3500,calc:'Замена матрицы'},
+{n:'Замена клавиатуры',c:'screen',d:'Залипание.',t:'1–2 дня',w:'6 мес',p:1800,calc:'Замена клавиатуры',sec:1},
+{n:'Ремонт платы',bd:'Пайка',bt:'fast',c:'board',d:'BGA-пайка.',t:'2–5 дней',w:'6 мес',p:3000,calc:'Ремонт платы'},
+{n:'Установка SSD',c:'upgrade',d:'Быстрее в 5–10 раз.',t:'30–60 мин',w:'12 мес',p:1000,calc:'Установка SSD',sec:1},
+{n:'Апгрейд комплексный',bd:'Хит',c:'upgrade',d:'SSD + ОЗУ + чистка.',t:'1–2 ч',w:'12 мес',p:2500,calc:'Апгрейд',sec:1},
+{n:'Ремонт после воды',bd:'Сложный',bt:'hot',c:'water',d:'УЗ-чистка.',t:'3–7 дней',w:'3 мес',p:2500,calc:'Ремонт после воды'}
+]},
+pk:{name:'ПК и моноблоки',h1:'Ремонт ПК',sub:'Системные блоки, моноблоки, мини-ПК, сборка под задачу.',icon:'pc',stats:[['1–3 дня','ремонт'],['от 1 000 ₽','чистка'],['до 12 мес','гарантия']],filters:[['all','Все'],['clean','Чистка'],['board','Плата'],['upgrade','Апгрейд']],services:[
+{n:'Чистка + термопаста',bd:'Хит',c:'clean',d:'Полная разборка, чистка.',t:'1–2 ч',w:'6 мес',p:1500,calc:'Чистка + термопаста'},
+{n:'Ремонт мат. платы',bd:'Пайка',bt:'fast',c:'board',d:'Вздутые конденсаторы.',t:'2–5 дней',w:'6 мес',p:2500,calc:'Ремонт материнской платы'},
+{n:'Замена видеокарты',c:'board',d:'Артефакты.',t:'2–5 дней',w:'6 мес',p:4000,calc:'Замена видеокарты',sec:1},
+{n:'Установка SSD',c:'upgrade',d:'Клонирование системы.',t:'30–60 мин',w:'12 мес',p:800,calc:'Установка SSD',sec:1},
+{n:'Сборка ПК',bd:'Подбор',bt:'fast',c:'upgrade',d:'Офис, игры, монтаж.',t:'1–3 дня',w:'12 мес',p:3000,calc:'Сборка ПК',sec:1}
+]},
+televizory:{name:'Телевизоры',h1:'Ремонт телевизоров',sub:'LG, Samsung, Sony, Philips, Xiaomi, Hisense.',icon:'tv',stats:[['1–3 дня','ремонт'],['от 2 000 ₽','диагностика'],['до 12 мес','гарантия']],filters:[['all','Все'],['backlight','Подсветка'],['board','Плата'],['matrix','Матрица'],['sound','Звук']],services:[
+{n:'Замена подсветки',bd:'Хит',c:'backlight',d:'LED-ленты, драйвер.',t:'1–3 дня',w:'12 мес',p:3500,calc:'Замена подсветки'},
+{n:'Ремонт БП',c:'board',d:'Не включается.',t:'1–3 дня',w:'6 мес',p:2500,calc:'Ремонт блока питания'},
+{n:'Замена T-Con',c:'board',d:'Полосы, инверсия.',t:'1–3 дня',w:'6 мес',p:2500,calc:'Замена T-Con',sec:1},
+{n:'Замена матрицы',c:'matrix',d:'Треснул экран.',t:'2–5 дней',w:'6 мес',p:8000,calc:'Замена матрицы'},
+{n:'Ремонт звука',c:'sound',d:'Хрипит, тихий.',t:'1–3 дня',w:'6 мес',p:2000,calc:'Ремонт звука',sec:1}
+]},
+chasy:{name:'Смарт-часы',h1:'Ремонт смарт-часов',sub:'Apple Watch, Samsung Galaxy Watch, Xiaomi, Huawei.',icon:'watch',stats:[['1–2 дня','ремонт'],['от 1 200 ₽','АКБ'],['до 6 мес','гарантия']],filters:[['all','Все'],['screen','Экран'],['battery','Питание'],['water','Вода']],services:[
+{n:'Замена стекла',bd:'Хит',c:'screen',d:'Только стекло, дешевле модуля.',t:'2–4 дня',w:'3 мес',p:1800,calc:'Замена стекла часов'},
+{n:'Замена дисплея',c:'screen',d:'Экран в сборе.',t:'2–3 дня',w:'6 мес',p:2500,calc:'Замена дисплея часов'},
+{n:'Замена АКБ',bd:'Быстро',bt:'fast',c:'battery',d:'Реальная ёмкость.',t:'1–2 дня',w:'6 мес',p:1200,calc:'Замена аккумулятора часов'},
+{n:'Ремонт после воды',bd:'Сложный',bt:'hot',c:'water',d:'УЗ-чистка.',t:'2–5 дней',w:'3 мес',p:1500,calc:'Ремонт после воды'}
+]},
+konsoli:{name:'Консоли и джойстики',h1:'Ремонт консолей',sub:'PlayStation, Xbox, Nintendo Switch и геймпады.',icon:'console',stats:[['1–3 дня','ремонт'],['от 1 500 ₽','геймпад'],['до 12 мес','гарантия']],filters:[['all','Все'],['clean','Чистка'],['board','Плата'],['gamepad','Геймпады'],['water','Вода']],services:[
+{n:'Чистка + термопаста',bd:'Хит',c:'clean',d:'Шумит, греется.',t:'1–2 дня',w:'6 мес',p:2500,calc:'Чистка + термопаста'},
+{n:'Ремонт платы',bd:'Пайка',bt:'fast',c:'board',d:'Не включается.',t:'3–7 дней',w:'6 мес',p:3500,calc:'Ремонт платы'},
+{n:'Ремонт геймпада',bd:'Хит',c:'gamepad',d:'Стики, кнопки.',t:'1–2 дня',w:'3 мес',p:1500,calc:'Ремонт геймпада'},
+{n:'Ремонт после воды',bd:'Сложный',bt:'hot',c:'water',d:'УЗ-чистка.',t:'3–7 дней',w:'3 мес',p:3000,calc:'Ремонт после воды'}
+]},
+breloki:{name:'Брелоки сигнализаций',h1:'Ремонт брелоков',sub:'StarLine, Pandora, Scher-Khan, Tomahawk, Alligator.',icon:'key',stats:[['1–2 дня','ремонт'],['от 400 ₽','мелкий'],['до 6 мес','гарантия']],filters:[['all','Все'],['buttons','Кнопки'],['screen','Матрица'],['water','Влага']],services:[
+{n:'Замена кнопок',bd:'Хит',c:'buttons',d:'Залипают, не работают.',t:'1–2 дня',w:'6 мес',p:800,calc:'Замена кнопок брелока'},
+{n:'Замена матрицы',c:'screen',d:'Потускнела, разбита.',t:'1–2 дня',w:'6 мес',p:1500,calc:'Замена матрицы брелока'},
+{n:'Ремонт после влаги',bd:'Сложный',bt:'hot',c:'water',d:'УЗ-чистка.',t:'1–3 дня',w:'3 мес',p:1200,calc:'Ремонт после влаги',sec:1}
+]},
+roboty:{name:'Робот-пылесосы',h1:'Ремонт роботов',sub:'iRobot Roomba, Xiaomi, Roborock, Samsung, Dyson 360.',icon:'robot',stats:[['1–3 дня','ремонт'],['от 1 500 ₽','диагностика'],['до 12 мес','гарантия']],filters:[['all','Все'],['motor','Двигатели'],['battery','Питание'],['water','Помпа'],['sensor','Датчики']],services:[
+{n:'Замена помпы',bd:'Хит',c:'water',d:'Гудит, вода не идёт.',t:'1–3 дня',w:'6 мес',p:2000,calc:'Замена помпы'},
+{n:'Ремонт движения',c:'motor',d:'Не едет, дёргается.',t:'1–3 дня',w:'6 мес',p:2500,calc:'Ремонт движения',sec:1},
+{n:'Ремонт щётки',c:'motor',d:'Не крутится.',t:'1–2 дня',w:'6 мес',p:1800,calc:'Ремонт щётки',sec:1},
+{n:'Замена АКБ',bd:'Быстро',bt:'fast',c:'battery',d:'Работает 10–20 мин.',t:'1–2 дня',w:'6 мес',p:2500,calc:'Замена аккумулятора робота'},
+{n:'Ремонт датчиков',c:'sensor',d:'Кружит на месте.',t:'1–3 дня',w:'6 мес',p:1800,calc:'Ремонт датчиков',sec:1}
+]},
+kofemashiny:{name:'Кофемашины',h1:'Ремонт кофемашин',sub:"De'Longhi, Philips, Bosch, Jura, Krups, Nivona, Saeco.",icon:'coffee',stats:[['2–5 дней','ремонт'],['от 2 000 ₽','диагностика'],['до 12 мес','гарантия']],filters:[['all','Все'],['pump','Помпа'],['scale','Накипь'],['heat','Нагрев'],['leak','Протечки']],services:[
+{n:'Замена помпы',bd:'Хит',c:'pump',d:'Гудит, вода не идёт.',t:'2–5 дней',w:'6 мес',p:3500,calc:'Замена помпы'},
+{n:'Чистка от накипи',c:'scale',d:'Полная декальцинация.',t:'1–2 дня',w:'6 мес',p:2500,calc:'Чистка от накипи'},
+{n:'Ремонт нагрева',c:'heat',d:'Не греет, нет пара.',t:'2–5 дней',w:'6 мес',p:3000,calc:'Ремонт нагрева'},
+{n:'Устранение протечки',c:'leak',d:'Капает, течёт.',t:'2–5 дней',w:'6 мес',p:2500,calc:'Устранение протечки',sec:1}
+]},
+bytovaya:{name:'Мелкая бытовая',h1:'Ремонт бытовой техники',sub:'Фены Dyson, отпариватели, микроволновки, блендеры, мультиварки.',icon:'home',stats:[['1–3 дня','ремонт'],['от 1 000 ₽','диагностика'],['до 6 мес','гарантия']],filters:[['all','Все'],['dyson','Dyson'],['steam','Отпариватели'],['micro','Микроволновки'],['kitchen','Кухонные']],services:[
+{n:'Ремонт фена Dyson',bd:'Хит',c:'dyson',d:'Supersonic, Airwrap, Corrale.',t:'1–3 дня',w:'6 мес',p:2500,calc:'Ремонт фена Dyson'},
+{n:'Ремонт отпаривателя',c:'steam',d:'Не идёт пар, течёт.',t:'1–3 дня',w:'6 мес',p:2000,calc:'Ремонт отпаривателя'},
+{n:'Ремонт микроволновки',c:'micro',d:'Не греет, искрит.',t:'2–5 дней',w:'6 мес',p:2500,calc:'Ремонт микроволновки'},
+{n:'Ремонт мультиварки',c:'kitchen',d:'Не греет, ошибка.',t:'2–5 дней',w:'6 мес',p:2000,calc:'Ремонт мультиварки',sec:1}
+]}};
+
+const BRANDS={
+iphone:{name:'iPhone',logo:'iP',cat:'Смартфоны',h1:'Ремонт iPhone',sub:'iPhone SE, 8, X, XR, 11–16, Pro и Pro Max.',stats:[['30 мин','экран'],['от 800 ₽','АКБ'],['12 мес','гарантия']],note:'<b>Особенность:</b> оригинальные дисплеи Apple и аналоги. Сохраняем True Tone. Лазер для iPhone 14/15.',services:[
+{n:'Замена дисплея',bd:'Хит',d:'Оригинал и аналоги OLED.',t:'1–2 ч',w:'12 мес',p:2500,calc:'Замена дисплея'},
+{n:'Замена АКБ',bd:'30 мин',bt:'fast',d:'Оригинал и аналоги.',t:'30–60 мин',w:'12 мес',p:1200,calc:'Замена аккумулятора'},
+{n:'Задняя крышка',d:'Лазером.',t:'1–3 ч',w:'6 мес',p:1500,calc:'Замена задней крышки',sec:1},
+{n:'Face ID',bd:'Сложный',bt:'hot',d:'Восстановление.',t:'2–5 дней',w:'6 мес',p:2500,calc:'Face ID',sec:1},
+{n:'Ремонт после воды',bd:'Сложный',bt:'hot',d:'УЗ-чистка.',t:'2–5 дней',w:'3 мес',p:2500,calc:'Ремонт после воды'}
+]},
+samsung:{name:'Samsung',logo:'SM',cat:'Смартфоны',h1:'Ремонт Samsung',sub:'Galaxy S, Note, Z Fold, Z Flip, A, M.',stats:[['1–2 дня','экран'],['от 800 ₽','АКБ'],['12 мес','гарантия']],note:'<b>Особенность:</b> оригинальные AMOLED Samsung Display. Для Z Fold/Flip — сложная разборка.',services:[
+{n:'Замена дисплея',bd:'Хит',d:'AMOLED.',t:'1–2 дня',w:'12 мес',p:2500,calc:'Замена дисплея'},
+{n:'Замена АКБ',bd:'30 мин',bt:'fast',d:'IP68 восстанавливаем.',t:'30–60 мин',w:'12 мес',p:800,calc:'Замена аккумулятора'},
+{n:'Z Fold / Z Flip',bd:'Сложный',bt:'hot',d:'Гибкий дисплей.',t:'3–7 дней',w:'3 мес',p:5000,calc:'Z Fold Flip',sec:1},
+{n:'Ремонт USB-C',d:'Не заряжается.',t:'1–2 ч',w:'6 мес',p:1000,calc:'Ремонт разъёма',sec:1}
+]},
+xiaomi:{name:'Xiaomi',logo:'Mi',cat:'Смартфоны',h1:'Ремонт Xiaomi',sub:'Xiaomi, Redmi, POCO.',stats:[['30 мин','экран'],['от 700 ₽','АКБ'],['12 мес','гарантия']],note:'<b>Особенность:</b> для Redmi и POCO держим запчасти в наличии.',services:[
+{n:'Замена дисплея',bd:'Хит',d:'Для Redmi — за час.',t:'1–2 ч',w:'12 мес',p:1500,calc:'Замена дисплея'},
+{n:'Замена АКБ',bd:'Быстро',bt:'fast',d:'Оригинал и аналоги.',t:'30–60 мин',w:'12 мес',p:700,calc:'Замена аккумулятора'},
+{n:'Разъём USB-C',d:'Нет быстрой зарядки.',t:'1–2 ч',w:'6 мес',p:800,calc:'Ремонт разъёма',sec:1}
+]},
+macbook:{name:'MacBook',logo:'MB',cat:'Ноутбуки',h1:'Ремонт MacBook',sub:'MacBook Air, Pro, M1, M2, M3.',stats:[['1–3 дня','ремонт'],['от 2 500 ₽','чистка'],['12 мес','гарантия']],note:'<b>Особенность:</b> плотная компоновка Apple. Пайка на ИК-станциях с микроскопом.',services:[
+{n:'Чистка + термопаста',bd:'Хит',d:'Полная разборка.',t:'1–2 ч',w:'6 мес',p:2500,calc:'Чистка + термопаста'},
+{n:'Замена матрицы',d:'Оригинальные комплекты Apple.',t:'2–5 дней',w:'12 мес',p:12000,calc:'Замена матрицы'},
+{n:'Замена АКБ',d:'Оригинальные батареи.',t:'1–2 дня',w:'12 мес',p:6500,calc:'Замена аккумулятора',sec:1},
+{n:'Ремонт платы',bd:'Пайка',bt:'fast',d:'ИК-станции.',t:'3–7 дней',w:'6 мес',p:5000,calc:'Ремонт платы'}
+]},
+asus:{name:'Asus',logo:'AS',cat:'Ноутбуки',h1:'Ремонт Asus',sub:'Asus, ROG, TUF, ZenBook, VivoBook.',stats:[['1–2 дня','ремонт'],['от 1 500 ₽','чистка'],['12 мес','гарантия']],note:'<b>Особенность:</b> ROG и TUF — разбираем игровое охлаждение с тепловыми трубками.',services:[
+{n:'Чистка + термопаста',bd:'Хит',d:'Для ROG и TUF.',t:'1–2 ч',w:'6 мес',p:2000,calc:'Чистка + термопаста'},
+{n:'Замена матрицы',d:'144 Гц, 240 Гц.',t:'2–4 дня',w:'12 мес',p:4500,calc:'Замена матрицы'},
+{n:'Замена видеокарты',d:'Отвал GPU.',t:'3–7 дней',w:'6 мес',p:5000,calc:'Замена видеокарты',sec:1},
+{n:'Апгрейд SSD + ОЗУ',d:'В 5–10 раз быстрее.',t:'1–2 ч',w:'12 мес',p:1500,calc:'Апгрейд',sec:1}
+]},
+lenovo:{name:'Lenovo',logo:'LN',cat:'Ноутбуки',h1:'Ремонт Lenovo',sub:'Lenovo, ThinkPad, IdeaPad, Legion, Yoga.',stats:[['1–2 дня','ремонт'],['от 1 500 ₽','чистка'],['12 мес','гарантия']],note:'<b>Особенность:</b> ThinkPad — специфика разборки. Legion — игровое охлаждение. Yoga — ремонт шарнира.',services:[
+{n:'Чистка + термопаста',bd:'Хит',d:'Legion и ThinkPad.',t:'1–2 ч',w:'6 мес',p:1800,calc:'Чистка + термопаста'},
+{n:'Замена матрицы',d:'144 Гц.',t:'2–4 дня',w:'12 мес',p:4000,calc:'Замена матрицы'},
+{n:'Ремонт платы',bd:'Пайка',bt:'fast',d:'Диагностика.',t:'3–7 дней',w:'6 мес',p:3500,calc:'Ремонт платы'},
+{n:'Апгрейд SSD + ОЗУ',d:'Ускорение.',t:'1–2 ч',w:'12 мес',p:1500,calc:'Апгрейд',sec:1}
+]},
+hp:{name:'HP',logo:'HP',cat:'Ноутбуки',h1:'Ремонт HP',sub:'HP Pavilion, ProBook, EliteBook, Envy, Omen.',stats:[['1–2 дня','ремонт'],['от 1 500 ₽','чистка'],['12 мес','гарантия']],note:'<b>Особенность:</b> ProBook и EliteBook — знаем специфику. Omen — игровое охлаждение.',services:[
+{n:'Чистка + термопаста',bd:'Хит',d:'Omen, Pavilion, ProBook.',t:'1–2 ч',w:'6 мес',p:1800,calc:'Чистка + термопаста'},
+{n:'Замена матрицы',d:'IPS 144 Гц.',t:'2–4 дня',w:'12 мес',p:4000,calc:'Замена матрицы'},
+{n:'Замена петель',d:'Pavilion трескается.',t:'2–4 дня',w:'6 мес',p:2500,calc:'Замена корпуса',sec:1}
+]}
+};
+
+const CALC={
+'Смартфоны':{services:{'Замена дисплея':[1500,12000],'Замена стекла':[1200,6000],'Замена тачскрина':[1500,6000],'Замена задней крышки':[1200,5000],'Замена аккумулятора':[800,3500],'Ремонт разъёма':[900,3000],'Замена камеры':[1200,5000],'Ремонт звука':[1000,3000],'Ремонт после воды':[2000,8000],'Программный ремонт':[500,2500]}},
+'Планшеты':{services:{'Замена дисплея':[2500,12000],'Замена стекла':[1800,8000],'Замена аккумулятора':[1500,4500],'Ремонт разъёма':[1200,3500],'Ремонт после воды':[2000,8000]}},
+'Ноутбуки':{services:{'Чистка + термопаста':[1500,3500],'Замена вентилятора':[2000,4500],'Замена матрицы':[3500,15000],'Замена клавиатуры':[1800,6000],'Ремонт платы':[3000,12000],'Ремонт после воды':[2500,12000],'Установка SSD':[1000,4000],'Апгрейд':[2500,7000]}},
+'ПК и моноблоки':{services:{'Чистка + термопаста':[1500,3500],'Ремонт мат. платы':[2500,12000],'Ремонт БП':[2000,7000],'Замена видеокарты':[4000,15000],'Установка SSD':[800,3500],'Сборка ПК':[3000,10000]}},
+'Телевизоры':{services:{'Замена подсветки':[3500,12000],'Ремонт БП':[2500,8000],'Замена T-Con':[2500,6000],'Замена матрицы':[8000,35000],'Ремонт звука':[2000,6000]}},
+'Смарт-часы':{services:{'Замена стекла':[1800,5000],'Замена дисплея':[2500,8000],'Замена аккумулятора':[1200,3500],'Ремонт после воды':[1500,5000]}},
+'Консоли и джойстики':{services:{'Чистка + термопаста':[2500,5000],'Ремонт платы':[3500,12000],'Ремонт геймпада':[1500,4500],'Ремонт после воды':[3000,10000]}},
+'Брелоки сигнализаций':{services:{'Замена кнопок':[800,2500],'Замена матрицы':[1500,4000],'Ремонт после влаги':[1200,3500]}},
+'Робот-пылесосы':{services:{'Замена помпы':[2000,5000],'Ремонт движения':[2500,6000],'Ремонт щётки':[1800,4500],'Замена аккумулятора':[2500,6500],'Ремонт датчиков':[1800,4500]}},
+'Кофемашины':{services:{'Замена помпы':[3500,7500],'Чистка от накипи':[2500,5000],'Ремонт нагрева':[3000,7000],'Устранение протечки':[2500,6000]}},
+'Мелкая бытовая':{services:{'Ремонт фена Dyson':[2500,6000],'Ремонт отпаривателя':[2000,5000],'Ремонт микроволновки':[2500,7000],'Ремонт мультиварки':[2000,5500]}}
+};
+
+const VM_TREE={
+start:{q:'Здравствуйте! Что у вас случилось?',opts:[{t:'Смартфон',next:'phone'},{t:'Ноутбук',next:'laptop'},{t:'Телевизор',next:'tv'},{t:'Бытовая',next:'home'},{t:'Другое',next:'other'}]},
+phone:{q:'Что со смартфоном?',opts:[{t:'Разбит экран',price:[1500,12000]},{t:'Не включается',price:[1000,6000]},{t:'Залил водой',price:[2000,8000]},{t:'Не заряжается',price:[900,3500]},{t:'Другое',next:'other'}]},
+laptop:{q:'Что с ноутбуком?',opts:[{t:'Греется/шумит',price:[1500,3500]},{t:'Разбит экран',price:[3500,15000]},{t:'Не включается',price:[2500,12000]},{t:'После воды',price:[2500,12000]},{t:'Медленно',price:[1000,4000]}]},
+tv:{q:'Что с ТВ?',opts:[{t:'Нет изображения',price:[2500,12000]},{t:'Не включается',price:[2500,8000]},{t:'Полосы',price:[2500,9000]},{t:'Нет звука',price:[2000,6000]}]},
+home:{q:'Какая техника?',opts:[{t:'Кофемашина',price:[2500,7500]},{t:'Робот-пылесос',price:[1500,7000]},{t:'Микроволновка',price:[2000,7000]},{t:'Фен/отпариватель',price:[1500,6000]}]},
+other:{q:'Опишите в WhatsApp — подскажем цену за 15 минут.',opts:[]}
+};
+
+/* ==================== RENDER ==================== */
+function renderHomeCats(){
+  const el=document.getElementById('homeCats');if(!el)return;
+  el.innerHTML=Object.keys(CATS).map((k,i)=>{
+    const c=CATS[k];const e=CAT3D[k]||['🔧','rgba(22,163,74,.35)','rgba(34,197,94,.08)'];
+    const minP=c.services.reduce((m,s)=>Math.min(m,s.p),999999);
+    return `<div class="cat3d rv" onclick="location.hash='#${k}'" style="--g1:${e[1]};--g2:${e[2]};animation-delay:${i*0.03}s">
+      <div class="cat3d-ic" style="animation-delay:${i*0.15}s">${e[0]}</div>
+      <div class="cat3d-info">
+        <h3>${c.name}</h3>
+        <span class="cat3d-cap">${c.services.length} услуг</span>
+        <span class="cat3d-price">от ${minP.toLocaleString('ru-RU')} ₽</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+function renderCat(slug){
+  const c=CATS[slug];if(!c){location.hash='#home';return}
+  document.getElementById('catBc').innerHTML=`<a href="#home">Главная</a><span class="sep">/</span><span class="cur">${c.name}</span>`;
+  document.getElementById('catH1').innerHTML=c.h1;
+  document.getElementById('catSub').textContent=c.sub;
+  const ce=CAT3D[slug]||['🔧'];document.getElementById('catIcon').innerHTML=ce[0];
+  document.getElementById('catStats').innerHTML=c.stats.map(s=>`<div><b>${s[0]}</b><span>${s[1]}</span></div>`).join('');
+  document.getElementById('catFilters').innerHTML=c.filters.map((f,i)=>`<button class="fc${i===0?' active':''}" data-filter="${f[0]}">${f[1]}</button>`).join('');
+  document.getElementById('catServices').innerHTML=c.services.map(s=>{
+    const bd=s.bd?`<span class="bdg ${s.bt||''}">${s.bd}</span>`:'';
+    const w=s.w?`<span>🛡️ ${s.w}</span>`:'';
+    return `<div class="svc-card rv" data-cat="${s.c}">
+      <div class="svc-head"><div class="svc-titles">${bd}<h3 style="margin-top:4px">${s.n}</h3><p class="svc-desc">${s.d}</p><div style="display:flex;gap:10px;margin-top:6px;font-size:11px;color:var(--m2)"><span>⏱ ${s.t}</span>${w?'<span>'+w.innerHTML+'</span>':''}</div></div></div>
+      <div class="svc-foot"><div class="svc-price">от ${s.p.toLocaleString('ru-RU')} <small>₽</small></div><button class="btn ${s.sec?'bs':'bp'} btn-sm" onclick="openCalc('${c.name}','${s.calc}')">Рассчитать</button></div>
+    </div>`;
+  }).join('');
+  document.querySelectorAll('#catFilters .fc').forEach(chip=>{
+    chip.addEventListener('click',()=>{
+      document.querySelectorAll('#catFilters .fc').forEach(x=>x.classList.remove('active'));
+      chip.classList.add('active');
+      const f=chip.dataset.filter;
+      document.querySelectorAll('#catServices .svc-card').forEach(item=>{item.style.display=(f==='all'||item.dataset.cat===f)?'':'none'});
+    });
+  });
+}
+function renderPrices(){
+  const all=[];
+  Object.keys(CATS).forEach(k=>{CATS[k].services.forEach(s=>{all.push({cat:CATS[k].name,catKey:k,...s})})});
+  document.getElementById('priceFilters').innerHTML=`<button class="fc active" data-pf="all">Все</button>`+Object.keys(CATS).map(k=>`<button class="fc" data-pf="${k}">${CATS[k].name}</button>`).join('');
+  const render=(f,q)=>{
+    const q2=(q||'').toLowerCase().trim();
+    const items=all.filter(x=>(f==='all'||x.catKey===f)&&(!q2||x.n.toLowerCase().includes(q2)));
+    document.getElementById('priceList').innerHTML=items.length?items.map(s=>{
+      const bd=s.bd?`<span class="bdg ${s.bt||''}">${s.bd}</span>`:'';
+      return `<div class="svc-card"><div class="svc-head"><div class="svc-titles"><span style="font-size:10px;color:var(--p);font-weight:700;text-transform:uppercase;letter-spacing:.05em">${s.cat}</span><h3 style="margin-top:4px">${s.n}</h3><p class="svc-desc">${s.d}</p><div style="margin-top:6px">⏱ ${s.t}${bd?' '+bd.outerHTML:''}</div></div></div><div class="svc-foot"><div class="svc-price">от ${s.p.toLocaleString('ru-RU')} <small>₽</small></div><button class="btn ${s.sec?'bs':'bp'} btn-sm" onclick="openCalc('${s.cat}','${s.calc}')">Расчёт</button></div></div>`;
+    }).join(''):'<div style="padding:40px 0;text-align:center"><div style="font-size:40px;margin-bottom:8px">🔍</div><div style="font-weight:700">Ничего не найдено</div><p class="tx" style="font-size:13px;margin-top:4px">Попробуйте другой запрос</p></div>';
+  };
+  let cur='all';
+  document.querySelectorAll('#priceFilters .fc').forEach(c=>{
+    c.addEventListener('click',()=>{document.querySelectorAll('#priceFilters .fc').forEach(x=>x.classList.remove('active'));c.classList.add('active');cur=c.dataset.pf;render(cur,document.getElementById('priceSearch').value)});
+  });
+  document.getElementById('priceSearch').oninput=e=>render(cur,e.target.value);
+  render('all','');
+}
+function renderBrandsList(){
+  const el=document.getElementById('brandsList');if(!el)return;
+  el.innerHTML=Object.keys(BRANDS).map(k=>{
+    const b=BRANDS[k];
+    return `<div class="cat3d rv" onclick="location.hash='#brand-${k}'" style="--g1:rgba(22,163,74,.4);--g2:rgba(34,197,94,.1)">
+      <div class="cat3d-ic" style="font-family:var(--fd);font-size:18px;font-weight:800;color:var(--p)">${b.logo}</div>
+      <div class="cat3d-info"><h3>${b.name}</h3><span class="cat3d-cap">${b.cat}</span></div>
+    </div>`;
+  }).join('');
+}
+function renderBrand(slug){
+  const b=BRANDS[slug];if(!b){location.hash='#brands';return}
+  document.getElementById('brandBc').innerHTML=`<a href="#home">Главная</a><span class="sep">/</span><a href="#brands">Бренды</a><span class="sep">/</span><span class="cur">${b.name}</span>`;
+  document.getElementById('brandH1').innerHTML=b.h1;
+  document.getElementById('brandSub').textContent=b.sub;
+  document.getElementById('brandStats').innerHTML=b.stats.map(s=>`<div><b>${s[0]}</b><span>${s[1]}</span></div>`).join('');
+  document.getElementById('brandNote').innerHTML=`<div style="background:rgba(22,163,74,.08);border:1px solid rgba(22,163,74,.25);border-radius:14px;padding:14px;font-size:13.5px;line-height:1.6;margin-bottom:16px">${b.note}</div>`;
+  document.getElementById('brandServices').innerHTML=b.services.map(s=>{
+    const bd=s.bd?`<span class="bdg ${s.bt||''}">${s.bd}</span>`:'';
+    return `<div class="svc-card rv"><div class="svc-head"><div class="svc-titles">${bd}<h3 style="margin-top:4px">${s.n}</h3><p class="svc-desc">${s.d}</p><div style="margin-top:6px;font-size:11px;color:var(--m2)">⏱ ${s.t} · 🛡️ ${s.w}</div></div></div><div class="svc-foot"><div class="svc-price">от ${s.p.toLocaleString('ru-RU')} <small>₽</small></div><button class="btn ${s.sec?'bs':'bp'} btn-sm" onclick="openCalc('${b.cat}','${s.calc}')">Расчёт</button></div></div>`;
+  }).join('');
+}
+
+/* ==================== VM ==================== */
+function openVM(){
+  document.getElementById('vmChat').innerHTML='';
+  document.getElementById('vmActions').innerHTML='';
+  document.getElementById('vmModal').classList.add('open');
+  document.body.style.overflow='hidden';
+  vmRender('start');
+}
+function closeVM(){
+  document.getElementById('vmModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function vmRender(key){
+  const node=VM_TREE[key];if(!node)return;
+  const chat=document.getElementById('vmChat');
+  const bot=document.createElement('div');bot.className='vm-msg';
+  bot.innerHTML='<div class="vm-av">MAG</div><div class="vm-bubble">'+node.q+'</div>';
+  chat.appendChild(bot);chat.scrollTop=chat.scrollHeight;
+  const acts=document.getElementById('vmActions');acts.innerHTML='';
+  if(node.opts&&node.opts.length){
+    const wrap=document.createElement('div');wrap.className='vm-options';
+    node.opts.forEach(o=>{
+      const b=document.createElement('button');b.className='vm-opt';b.textContent=o.t;
+      b.onclick=()=>{
+        const u=document.createElement('div');u.className='vm-msg user';
+        u.innerHTML='<div class="vm-av">Вы</div><div class="vm-bubble">'+o.t+'</div>';
+        chat.appendChild(u);chat.scrollTop=chat.scrollHeight;acts.innerHTML='';
+        setTimeout(()=>{
+          if(o.price){
+            const p=document.createElement('div');p.className='vm-msg';
+            p.innerHTML='<div class="vm-av">MAG</div><div class="vm-bubble">Примерная стоимость:<div class="vm-price"><b>от '+o.price[0].toLocaleString('ru-RU')+' до '+o.price[1].toLocaleString('ru-RU')+' ₽</b><span>Точную цену назовём после бесплатной диагностики</span></div></div>';
+            chat.appendChild(p);chat.scrollTop=chat.scrollHeight;
+            const c=document.createElement('div');c.style.cssText='display:flex;flex-direction:column;gap:8px;margin-top:10px';
+            c.innerHTML='<button class="btn bp" onclick="closeVM();openLead()">Записаться на диагностику</button><a href="https://wa.me/79045485004" class="btn bs" target="_blank" rel="noopener">Уточнить в WhatsApp</a>';
+            acts.appendChild(c);
+          } else vmRender(o.next);
+        },400);
+      };
+      wrap.appendChild(b);
+    });
+    acts.appendChild(wrap);
+  } else {
+    const c=document.createElement('div');c.style.cssText='display:flex;flex-direction:column;gap:8px;margin-top:10px';
+    c.innerHTML='<a href="https://wa.me/79045485004" class="btn bp" target="_blank" rel="noopener">Написать в WhatsApp</a><button class="btn bs" onclick="closeVM();openLead()">Оставить заявку</button>';
+    acts.appendChild(c);
+  }
+}
+
+/* ==================== MENU / FAB ==================== */
+function openMenu(){document.getElementById('mm').classList.add('open');document.body.style.overflow='hidden'}
+function closeMenu(){document.getElementById('mm').classList.remove('open');document.body.style.overflow=''}
+function toggleFab(){document.getElementById('fabList').classList.toggle('open');document.getElementById('fabMain').classList.toggle('open')}
+
+/* ==================== LEAD ==================== */
+let slotValue='';
+function pickSlot(el,v){document.querySelectorAll('#slotGrid .slot').forEach(x=>x.classList.remove('active'));el.classList.add('active');slotValue=v}
+function openLead(){closeMenu();document.getElementById('leadModal').classList.add('open');document.body.style.overflow='hidden'}
+function closeLead(){document.getElementById('leadModal').classList.remove('open');document.body.style.overflow=''}
+function submitLead(e){
+  e.preventDefault();
+  const name=document.getElementById('lf-name').value.trim();
+  const phone=document.getElementById('lf-phone').value.trim();
+  const msg=document.getElementById('lf-msg').value.trim();
+  const bd=document.getElementById('lf-bd').value;
+  const err=document.getElementById('leadErr');
+  if(!name||phone.replace(/\D/g,'').length<10){err.classList.add('show');return}
+  err.classList.remove('show');
+  const NL=String.fromCharCode(10);
+  const num='MAG-'+Math.floor(1000+Math.random()*9000);
+  const text='Заявка '+num+NL+NL+'Имя: '+name+NL+'Телефон: '+phone+(slotValue?NL+'Когда: '+slotValue:'')+(bd?NL+'ДР: '+bd:'')+(msg?NL+'Проблема: '+msg:'');
+  window.open('https://wa.me/79045485004?text='+encodeURIComponent(text),'_blank');
+  document.getElementById('leadForm').innerHTML='<div style="text-align:center;padding:16px"><div style="font-size:48px">🎉</div><h3 style="margin:10px 0 6px">Заявка '+num+' готова!</h3><p class="tx" style="font-size:13.5px">Мы открыли WhatsApp — нажмите «отправить».<br>Промокод <b style="color:var(--p)">MAG15</b> (−15%) уже применён.</p><button class="btn bp" style="margin-top:14px;width:100%" onclick="closeLead();location.reload()">Отлично</button></div>';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeLead();closeVM();closeCalc();closeEm();closeMenu()}});
+
+/* ==================== CALC ==================== */
+let cs={step:1,category:null,service:null,model:''};
+function openCalc(c,s){
+  cs={step:1,category:null,service:null,model:''};
+  if(c&&CALC[c])cs.category=c;
+  if(s&&CALC[c]&&CALC[c].services[s])cs.service=s;
+  renderCalc();
+  document.getElementById('calcModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeCalc(){document.getElementById('calcModal').classList.remove('open');document.body.style.overflow=''}
+function renderCalc(){
+  document.querySelectorAll('.prg span').forEach(x=>x.classList.toggle('active',parseInt(x.dataset.step)<=cs.step));
+  document.querySelectorAll('.stp').forEach(x=>x.classList.toggle('active',parseInt(x.dataset.step)===cs.step));
+  if(cs.step===1){document.getElementById('catOptions').innerHTML=Object.keys(CALC).map(c=>`<button class="so ${cs.category===c?'selected':''}" onclick="pickCat('${c}')">${c}</button>`).join('')}
+  if(cs.step===2){const sv=cs.category?Object.keys(CALC[cs.category].services):[];document.getElementById('serviceOptions').innerHTML=sv.map(x=>`<button class="so ${cs.service===x?'selected':''}" onclick="pickSrv('${x}')">${x}</button>`).join('')}
+  if(cs.step===3){document.getElementById('modelInput').value=cs.model}
+  if(cs.step===4){
+    let a=0,b=0;
+    if(cs.category&&cs.service){const r=CALC[cs.category].services[cs.service];if(r){a=r[0];b=r[1]}}
+    document.getElementById('resultPrice').textContent='от '+a.toLocaleString('ru-RU')+' до '+b.toLocaleString('ru-RU')+' ₽';
+  }
+  document.getElementById('btnBack').style.display=cs.step>1?'inline-flex':'none';
+  const n=document.getElementById('btnNext');n.style.display=cs.step<4?'inline-flex':'none';
+  if(cs.step===1)n.disabled=!cs.category;else if(cs.step===2)n.disabled=!cs.service;else n.disabled=false;
+}
+function pickCat(c){cs.category=c;cs.service=null;renderCalc()}
+function pickSrv(s){cs.service=s;renderCalc()}
+function stepNext(){if(cs.step===3)cs.model=document.getElementById('modelInput').value.trim();if(cs.step<4){cs.step++;renderCalc()}}
+function stepBack(){if(cs.step>1){cs.step--;renderCalc()}}
+
+/* ==================== EMERGENCY ==================== */
+function openEmergency(){document.getElementById('emModal').classList.add('open');document.body.style.overflow='hidden'}
+function closeEm(){document.getElementById('emModal').classList.remove('open');document.body.style.overflow=''}
+function emergency(t){
+  window.open('https://wa.me/79045485004?text='+encodeURIComponent('🚨 СРОЧНО! Нужен срочный ремонт: '+t),'_blank');
+  showToast('Открыли WhatsApp');
+  closeEm();
+}
+
+/* ==================== TRACK ==================== */
+function checkTrack(){
+  const v=document.getElementById('trackInput').value.trim();
+  if(!v){showToast('Введите номер заказа');return}
+  const stages=[
+    {t:'Принято в сервис',d:'Устройство зарегистрировано',done:true},
+    {t:'Диагностика',d:'Причина поломки определена',done:true},
+    {t:'Согласование',d:'Цена и срок подтверждены',done:true},
+    {t:'Ремонт',d:'Мастер выполняет работы',active:true},
+    {t:'Тестирование',d:'Финальная проверка'},
+    {t:'Готово к выдаче',d:'Можно забирать'}
+  ];
+  document.getElementById('trackResult').innerHTML=stages.map((s,i)=>`<div class="trk-step ${s.done?'done':''} ${s.active?'active':''}"><div class="trk-dot">${s.done?'✓':i+1}</div><div class="trk-info"><b>${s.t}</b><span>${s.d}</span></div></div>`).join('');
+  showToast('Заказ найден');
+}
+
+/* ==================== EXPLODED ==================== */
+function toggleExploded(){
+  const el=document.getElementById('explodedView');
+  el.classList.toggle('exploded-open');
+  showToast(el.classList.contains('exploded-open')?'🔧 Разборка: 6 слоёв':'✅ Устройство собрано');
+}
+
+/* ==================== REPAIR LOG ==================== */
+const LOG_MSGS=[
+  ['INFO','Принят Samsung Galaxy S22'],
+  ['SCAN','Проверка шлейфов…'],
+  ['WARN','Шлейф зарядки: окисление'],
+  ['REPAIR','Замена шлейфа'],
+  ['OK','Готово · гарантия 6 мес'],
+  ['INFO','Принят MacBook Air M1'],
+  ['SCAN','Диагностика охлаждения…'],
+  ['WARN','Термопаста высохла'],
+  ['REPAIR','Чистка + термопаста'],
+  ['TEST','CPU: 92°C → 68°C'],
+  ['OK','Готово'],
+  ['INFO',"De'Longhi Magnifica"],
+  ['FAIL','Помпа не создаёт давление'],
+  ['REPAIR','Замена помпы'],
+  ['OK','Давление 9 бар — норма']
+];
+let logIdx=0;
+function initRepairLog(){
+  const el=document.getElementById('repairLog');if(!el)return;
+  setInterval(()=>{
+    const [tag,text]=LOG_MSGS[logIdx++%LOG_MSGS.length];
+    const d=new Date();
+    const t=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+    const cls=tag==='FAIL'?'err':tag==='WARN'?'warn':tag==='OK'?'ok':'';
+    const line=document.createElement('div');
+    line.className='rl-line';
+    line.innerHTML=`<span class="t">${t}</span><span class="s ${cls}">[${tag}] ${text}</span>`;
+    el.appendChild(line);
+    while(el.children.length>8)el.removeChild(el.firstChild);
+    el.scrollTop=el.scrollHeight;
+  },3200);
+}
+
+/* ==================== TOAST ==================== */
+let tTimer;
+function showToast(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toastMsg').textContent=msg;
+  t.classList.add('show');
+  clearTimeout(tTimer);
+  tTimer=setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+/* ==================== ROUTER ==================== */
+function navigateTo(hash){location.hash=hash}
+function nav(){
+  const hash=(location.hash||'#home').slice(1);
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  if(hash.startsWith('brand-')&&BRANDS[hash.slice(6)]){
+    document.querySelector('[data-page="brand"]').classList.add('active');
+    renderBrand(hash.slice(6));
+  } else if(CATS[hash]){
+    document.querySelector('[data-page="category"]').classList.add('active');
+    renderCat(hash);
+  } else {
+    const pg=document.querySelector('[data-page="'+hash+'"]')||document.querySelector('[data-page="home"]');
+    pg.classList.add('active');
+    if(hash==='prices')renderPrices();
+    if(hash==='brands')renderBrandsList();
+  }
+  window.scrollTo({top:0,behavior:'instant'});
+  setTimeout(revealAll,40);
+  // Update bottom nav
+  document.querySelectorAll('.bn-item[data-nav]').forEach(el=>{
+    el.classList.toggle('active',el.getAttribute('data-nav')===hash);
+  });
+}
+window.addEventListener('hashchange',nav);
+
+/* ==================== REVEAL ==================== */
+function revealAll(){
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
+  },{threshold:.1});
+  document.querySelectorAll('.page.active .rv:not(.visible)').forEach(el=>io.observe(el));
+}
+
+/* ==================== SCROLL ==================== */
+function onScroll(){
+  const sc=window.scrollY;
+  const dh=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('progressFill').style.width=(dh>0?sc/dh*100:0)+'%';
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+
+/* ==================== INIT ==================== */
+function initTimer(){
+  function tick(){
+    const n=new Date(),e=new Date();e.setHours(23,59,59,999);
+    let d=Math.max(0,e-n);
+    const h=String(Math.floor(d/3.6e6)).padStart(2,'0');
+    const m=String(Math.floor(d%3.6e6/6e4)).padStart(2,'0');
+    const s=String(Math.floor(d%6e4/1e3)).padStart(2,'0');
+    const th=document.getElementById('th');if(th){th.textContent=h;document.getElementById('tm').textContent=m;document.getElementById('ts').textContent=s}
+  }
+  setInterval(tick,1000);tick();
+}
+function initCounters(){
+  const io=new IntersectionObserver(es=>{
+    es.forEach(x=>{
+      if(!x.isIntersecting)return;
+      const el=x.target,t=+el.dataset.cnt;let c=0;
+      const iv=setInterval(()=>{c+=Math.ceil(t/40);if(c>=t){c=t;clearInterval(iv)}el.textContent=c.toLocaleString('ru-RU')},30);
+      io.unobserve(el);
+    });
+  },{threshold:.4});
+  document.querySelectorAll('[data-cnt]').forEach(el=>io.observe(el));
+}
+function initBASliders(){
+  document.querySelectorAll('[data-ba]').forEach(w=>{
+    const wrap=w.querySelector('.ba-wrap');if(!wrap)return;
+    let drag=false;
+    const set=x=>{
+      const r=wrap.getBoundingClientRect();
+      let p=((x-r.left)/r.width*100);
+      p=Math.max(4,Math.min(96,p));
+      wrap.style.setProperty('--pos',p+'%');
+    };
+    wrap.style.setProperty('--pos','50%');
+    wrap.addEventListener('pointerdown',e=>{drag=true;wrap.setPointerCapture(e.pointerId);set(e.clientX)});
+    wrap.addEventListener('pointermove',e=>{if(drag)set(e.clientX)});
+    wrap.addEventListener('pointerup',()=>drag=false);
+    let t=0;
+    setInterval(()=>{
+      if(drag||!wrap.isConnected)return;
+      const r=wrap.getBoundingClientRect();
+      if(r.top<innerHeight&&r.bottom>0){
+        t+=.02;
+        const p=50+Math.sin(t)*16;
+        if(!drag)wrap.style.setProperty('--pos',p+'%');
+      }
+    },60);
+  });
+}
+function initProof(){
+  const msgs=['Игорь записался на замену экрана 📱','Мария спросила про чистку MacBook 💻','Дмитрий вызвал мастера для кофемашины ☕','Осталось 3 окна на сегодня ⏰','Отзыв 5★: «сделали за час» ⭐'];
+  let i=0;
+  setInterval(()=>{
+    const t=document.getElementById('proof');if(!t)return;
+    document.getElementById('proofTxt').textContent=msgs[i++%msgs.length];
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),3500);
+  },12000);
+  setTimeout(()=>{const t=document.getElementById('proof');if(t){document.getElementById('proofTxt').textContent=msgs[0];t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500)}},6000);
+}
+
+/* BOOT */
+renderHomeCats();
+nav();
+revealAll();
+initTimer();
+initCounters();
+initBASliders();
+initProof();
+initRepairLog();
+onScroll();
+</script>
+</body>
+</html>
